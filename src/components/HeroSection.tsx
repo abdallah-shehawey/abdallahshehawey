@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail, Phone, MapPin, Download } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden circuit-pattern">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden circuit-pattern pt-24">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
