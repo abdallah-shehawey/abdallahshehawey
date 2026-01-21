@@ -141,11 +141,13 @@ const HeroSection = () => {
                 animate={{ rotate: [0, 2, -2, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}
               >
-                <div className="absolute inset-4 rounded-xl border border-primary/30 flex items-center justify-center">
-                  <div className="text-center">
-                    <span className="text-6xl font-mono font-bold text-gradient">AS</span>
-                    <p className="text-xs text-muted-foreground mt-2 font-mono">v2.0.3</p>
-                  </div>
+                <div className="absolute inset-4 rounded-xl border border-primary/30 flex flex-col items-center justify-center overflow-hidden">
+                  <img 
+                    src="/STM.jpg" 
+                    alt="Abdallah Shehawey" 
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                  <p className="absolute bottom-2 text-xs text-white/80 font-mono bg-black/50 px-2 py-1 rounded">v2.0.3</p>
                 </div>
               </motion.div>
 
