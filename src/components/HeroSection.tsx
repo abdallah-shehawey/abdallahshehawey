@@ -147,7 +147,6 @@ const HeroSection = () => {
                     alt="Abdallah Shehawey" 
                     className="w-full h-full object-cover rounded-lg"
                   />
-                  <p className="absolute bottom-2 text-xs text-white/80 font-mono bg-black/50 px-2 py-1 rounded">v2.0.3</p>
                 </div>
               </motion.div>
 
