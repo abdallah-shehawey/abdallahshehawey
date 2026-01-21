@@ -143,9 +143,12 @@ const HeroSection = () => {
               >
                 <div className="absolute inset-4 rounded-xl border border-primary/30 flex flex-col items-center justify-center overflow-hidden">
                   <img 
-                    src="/STM.jpg" 
+                    src="/STM.webp" 
                     alt="Abdallah Shehawey" 
                     className="w-full h-full object-cover rounded-lg"
+                    loading="eager"
+                    width="320"
+                    height="320"
                   />
                 </div>
               </motion.div>
