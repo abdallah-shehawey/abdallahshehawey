@@ -116,10 +116,14 @@ const HeroSection = () => {
               >
                 <Linkedin className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
               </a>
-              <button className="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:glow-primary transition-all duration-300">
+              <a
+                href="/Abdallah_Shehawey_CV.pdf"
+                download="Abdallah_Shehawey_CV.pdf"
+                className="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:glow-primary transition-all duration-300"
+              >
                 <Download className="w-5 h-5" />
                 Download CV
-              </button>
+              </a>
             </motion.div>
           </motion.div>
 
