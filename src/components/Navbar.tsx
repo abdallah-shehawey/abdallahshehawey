@@ -14,6 +14,25 @@ const navItems = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    
+    // Close mobile menu if open
+    setIsOpen(false);
+    
+    // Handle home link (scroll to top)
+    if (href === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    
+    // Scroll to section
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <motion.nav
       className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
@@ -24,7 +43,11 @@ const Navbar = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="text-xl font-bold font-mono text-gradient">
+          <a 
+            href="#" 
+            onClick={(e) => handleSmoothScroll(e, "#")}
+            className="text-xl font-bold font-mono text-gradient"
+          >
             &lt;AS/&gt;
           </a>
 
@@ -34,6 +57,7 @@ const Navbar = () => {
               <a
                 key={item.label}
                 href={item.href}
+                onClick={(e) => handleSmoothScroll(e, item.href)}
                 className="text-sm text-muted-foreground hover:text-primary transition-colors font-mono"
               >
                 {item.label}
@@ -65,7 +89,7 @@ const Navbar = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleSmoothScroll(e, item.href)}
                   className="block py-2 text-muted-foreground hover:text-primary transition-colors font-mono"
                 >
                   {item.label}
