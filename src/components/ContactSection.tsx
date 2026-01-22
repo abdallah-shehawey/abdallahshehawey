@@ -22,9 +22,10 @@ const ContactSection = () => {
     subject: "",
     message: "",
   });
+  const [honeypot, setHoneypot] = useState(""); // Anti-bot honeypot field
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -56,7 +57,7 @@ const ContactSection = () => {
 
     try {
       const { data, error } = await supabase.functions.invoke("send-contact-email", {
-        body: result.data,
+        body: { ...result.data, website: honeypot }, // website is honeypot field
       });
 
       if (error) {
@@ -192,6 +193,19 @@ const ContactSection = () => {
                 </div>
               ) : (
                 <form className="space-y-4" onSubmit={handleSubmit}>
+                  {/* Honeypot field - hidden from real users, bots will fill it */}
+                  <div className="absolute opacity-0 pointer-events-none" aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }}>
+                    <label htmlFor="website">Website</label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
                   <div>
                     <label className="block text-sm text-muted-foreground mb-2">Name</label>
                     <input

@@ -14,6 +14,7 @@ interface ContactEmailRequest {
   email: string;
   subject: string;
   message: string;
+  website?: string; // Honeypot field - should be empty for real users
 }
 
 // Simple in-memory rate limiting (resets on function cold start)
@@ -77,7 +78,17 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    const { name, email, subject, message }: ContactEmailRequest = await req.json();
+    const { name, email, subject, message, website }: ContactEmailRequest = await req.json();
+
+    // Honeypot check - if website field is filled, it's a bot
+    // Return success to avoid revealing the bot detection
+    if (website && website.trim() !== "") {
+      console.warn("Honeypot triggered from IP:", clientIp);
+      return new Response(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
 
     // Validate required fields
     if (!name || !email || !subject || !message) {
