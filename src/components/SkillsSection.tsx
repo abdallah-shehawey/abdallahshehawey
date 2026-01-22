@@ -41,8 +41,8 @@ const SkillsSection = () => {
           viewport={{ once: true }}
         >
           <span className="text-primary font-mono text-sm">&lt;skills&gt;</span>
-          <h2 className="text-4xl md:text-5xl font-bold font-mono mt-2 mb-4">
-            Technical <span className="text-gradient">Expertise</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-mono mt-2 mb-4">
+            <span className="whitespace-nowrap">Technical <span className="text-gradient">Expertise</span></span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Comprehensive knowledge in embedded systems development, from low-level programming to system architecture

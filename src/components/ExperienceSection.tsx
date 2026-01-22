@@ -51,8 +51,8 @@ const ExperienceSection = () => {
           viewport={{ once: true }}
         >
           <span className="text-primary font-mono text-sm">&lt;experience&gt;</span>
-          <h2 className="text-4xl md:text-5xl font-bold font-mono mt-2 mb-4">
-            Volunteering <span className="text-gradient">Experience</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-mono mt-2 mb-4">
+            <span className="whitespace-nowrap">Volunteering <span className="text-gradient">Experience</span></span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Leadership roles and community contributions in embedded systems education
