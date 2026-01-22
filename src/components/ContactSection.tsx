@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Github, Linkedin, Send, Loader2, CheckCircle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
+import { getSupabaseClient } from "@/lib/getSupabaseClient";
 
 // Validation schema
 const contactSchema = z.object({
@@ -56,6 +56,12 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
+      const supabase = await getSupabaseClient();
+      if (!supabase) {
+        toast.error("Contact form is temporarily unavailable. Please try again later.");
+        return;
+      }
+
       const { data, error } = await supabase.functions.invoke("send-contact-email", {
         body: { ...result.data, website: honeypot }, // website is honeypot field
       });
