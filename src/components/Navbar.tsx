@@ -14,6 +14,31 @@ const navItems = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const smoothScrollTo = (targetPosition: number, duration: number = 800) => {
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime: number | null = null;
+
+    const animation = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      
+      // Easing function for smooth animation
+      const ease = (t: number) => t < 0.5 
+        ? 4 * t * t * t 
+        : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+      
+      window.scrollTo(0, startPosition + distance * ease(progress));
+      
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
+  };
+
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     
@@ -22,14 +47,15 @@ const Navbar = () => {
     
     // Handle home link (scroll to top)
     if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      smoothScrollTo(0);
       return;
     }
     
     // Scroll to section
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - 64; // 64px for navbar height
+      smoothScrollTo(targetPosition);
     }
   };
 
