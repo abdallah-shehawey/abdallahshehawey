@@ -25,7 +25,7 @@ const ContactSection = () => {
   const [honeypot, setHoneypot] = useState(""); // Anti-bot honeypot field
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>();
+  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
