@@ -170,7 +170,7 @@ const EducationSection = () => {
                   <div className="flex items-start justify-between mb-2">
                     <h4 className="font-semibold text-foreground">{cert.title}</h4>
                     {cert.hours && (
-                      <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">
+                      <span className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary whitespace-nowrap flex-shrink-0">
                         {cert.hours}
                       </span>
                     )}
