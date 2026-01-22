@@ -154,7 +154,7 @@ const EducationSection = () => {
               <div className="p-3 rounded-xl bg-accent/10">
                 <BookOpen className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="text-2xl font-bold font-mono">Certifications & Training</h3>
+              <h3 className="text-xl md:text-2xl font-bold font-mono whitespace-nowrap">Certifications & Training</h3>
             </div>
 
             <div className="space-y-4">
