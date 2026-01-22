@@ -1,26 +1,35 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Github, Linkedin, Mail, Phone, MapPin, Download } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const HeroSection = () => {
+  const prefersReducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+  
+  // Disable heavy animations on mobile or when user prefers reduced motion
+  const shouldReduceMotion = prefersReducedMotion || isMobile;
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden circuit-pattern pt-24">
-      {/* Animated background elements */}
+      {/* Animated background elements - simplified on mobile */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 rounded-full bg-primary/10 blur-3xl"
-          animate={{
+          className="absolute top-20 left-10 w-72 h-72 rounded-full bg-primary/10 blur-3xl will-change-transform"
+          initial={{ scale: 1, opacity: 0.3 }}
+          animate={shouldReduceMotion ? { scale: 1, opacity: 0.3 } : {
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
           }}
-          transition={{ duration: 4, repeat: Infinity }}
+          transition={shouldReduceMotion ? {} : { duration: 8, repeat: Infinity, ease: "linear" }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-accent/10 blur-3xl"
-          animate={{
+          className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-accent/10 blur-3xl will-change-transform"
+          initial={{ scale: 1.2, opacity: 0.3 }}
+          animate={shouldReduceMotion ? { scale: 1.2, opacity: 0.3 } : {
             scale: [1.2, 1, 1.2],
             opacity: [0.3, 0.5, 0.3],
           }}
-          transition={{ duration: 5, repeat: Infinity }}
+          transition={shouldReduceMotion ? {} : { duration: 10, repeat: Infinity, ease: "linear" }}
         />
       </div>
 
@@ -135,11 +144,11 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="relative w-80 h-80 md:w-96 md:h-96">
-              {/* Main chip */}
+              {/* Main chip - simplified animation on mobile */}
               <motion.div
-                className="absolute inset-8 rounded-2xl border-2 border-primary/50 bg-card/80 backdrop-blur-sm glow-primary"
-                animate={{ rotate: [0, 2, -2, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute inset-8 rounded-2xl border-2 border-primary/50 bg-card/80 backdrop-blur-sm glow-primary will-change-transform"
+                animate={shouldReduceMotion ? {} : { rotate: [0, 2, -2, 0] }}
+                transition={shouldReduceMotion ? {} : { duration: 8, repeat: Infinity, ease: "linear" }}
               >
                 <div className="absolute inset-4 rounded-xl border border-primary/30 flex flex-col items-center justify-center overflow-hidden">
                   <img 
@@ -153,50 +162,56 @@ const HeroSection = () => {
                 </div>
               </motion.div>
 
-              {/* Circuit lines */}
-              {[...Array(8)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-8 h-0.5 bg-gradient-to-r from-primary/50 to-transparent"
-                  style={{
-                    top: `${20 + i * 10}%`,
-                    left: 0,
-                  }}
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 2, delay: i * 0.2, repeat: Infinity }}
-                />
-              ))}
-              {[...Array(8)].map((_, i) => (
-                <motion.div
-                  key={`right-${i}`}
-                  className="absolute w-8 h-0.5 bg-gradient-to-l from-primary/50 to-transparent"
-                  style={{
-                    top: `${20 + i * 10}%`,
-                    right: 0,
-                  }}
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 2, delay: i * 0.2 + 0.5, repeat: Infinity }}
-                />
-              ))}
+              {/* Circuit lines - hidden on mobile for better performance */}
+              {!shouldReduceMotion && (
+                <>
+                  {[...Array(8)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-8 h-0.5 bg-gradient-to-r from-primary/50 to-transparent will-change-opacity"
+                      style={{
+                        top: `${20 + i * 10}%`,
+                        left: 0,
+                      }}
+                      animate={{ opacity: [0.3, 1, 0.3] }}
+                      transition={{ duration: 3, delay: i * 0.3, repeat: Infinity, ease: "linear" }}
+                    />
+                  ))}
+                  {[...Array(8)].map((_, i) => (
+                    <motion.div
+                      key={`right-${i}`}
+                      className="absolute w-8 h-0.5 bg-gradient-to-l from-primary/50 to-transparent will-change-opacity"
+                      style={{
+                        top: `${20 + i * 10}%`,
+                        right: 0,
+                      }}
+                      animate={{ opacity: [0.3, 1, 0.3] }}
+                      transition={{ duration: 3, delay: i * 0.3 + 0.5, repeat: Infinity, ease: "linear" }}
+                    />
+                  ))}
+                </>
+              )}
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className="w-6 h-10 rounded-full border-2 border-primary/50 flex justify-center pt-2">
-          <motion.div
-            className="w-1.5 h-3 rounded-full bg-primary"
-            animate={{ opacity: [1, 0.3, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
-        </div>
-      </motion.div>
+      {/* Scroll indicator - hidden on mobile */}
+      {!isMobile && (
+        <motion.div
+          className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={shouldReduceMotion ? {} : { y: [0, 10, 0] }}
+          transition={shouldReduceMotion ? {} : { duration: 3, repeat: Infinity, ease: "linear" }}
+        >
+          <div className="w-6 h-10 rounded-full border-2 border-primary/50 flex justify-center pt-2">
+            <motion.div
+              className="w-1.5 h-3 rounded-full bg-primary"
+              animate={shouldReduceMotion ? {} : { opacity: [1, 0.3, 1] }}
+              transition={shouldReduceMotion ? {} : { duration: 2, repeat: Infinity, ease: "linear" }}
+            />
+          </div>
+        </motion.div>
+      )}
     </section>
   );
 };
