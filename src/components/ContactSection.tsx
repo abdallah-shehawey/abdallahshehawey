@@ -1,7 +1,82 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Github, Linkedin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, Send, Loader2, CheckCircle } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+import { z } from "zod";
+
+// Validation schema
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  subject: z.string().trim().min(1, "Subject is required").max(200, "Subject must be less than 200 characters"),
+  message: z.string().trim().min(1, "Message is required").max(5000, "Message must be less than 5000 characters"),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear error when user types
+    if (errors[name as keyof ContactFormData]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrors({});
+
+    // Validate form data
+    const result = contactSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: Partial<Record<keyof ContactFormData, string>> = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as keyof ContactFormData] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+        body: result.data,
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      setIsSuccess(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      toast.success("Message sent successfully! I'll get back to you soon.");
+
+      // Reset success state after 5 seconds
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch (error: any) {
+      console.error("Error sending message:", error);
+      toast.error("Failed to send message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="py-24 relative" id="contact">
       <div className="container mx-auto px-6">
@@ -107,47 +182,99 @@ const ContactSection = () => {
             >
               <h3 className="text-xl font-semibold font-mono mb-6">Send a Message</h3>
               
-              <form className="space-y-4">
-                <div>
-                  <label className="block text-sm text-muted-foreground mb-2">Name</label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 rounded-lg bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
-                    placeholder="Your name"
-                  />
+              {isSuccess ? (
+                <div className="flex flex-col items-center justify-center py-12 text-center">
+                  <CheckCircle className="w-16 h-16 text-primary mb-4" />
+                  <h4 className="text-xl font-semibold mb-2">Message Sent!</h4>
+                  <p className="text-muted-foreground">
+                    Thank you for reaching out. I'll get back to you as soon as possible.
+                  </p>
                 </div>
-                <div>
-                  <label className="block text-sm text-muted-foreground mb-2">Email</label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-3 rounded-lg bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
-                    placeholder="your@email.com"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm text-muted-foreground mb-2">Subject</label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 rounded-lg bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
-                    placeholder="Subject"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm text-muted-foreground mb-2">Message</label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-lg bg-secondary border border-border focus:border-primary focus:outline-none transition-colors resize-none"
-                    placeholder="Your message..."
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:glow-primary transition-all duration-300"
-                >
-                  <Send className="w-5 h-5" />
-                  Send Message
-                </button>
-              </form>
+              ) : (
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  <div>
+                    <label className="block text-sm text-muted-foreground mb-2">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-3 rounded-lg bg-secondary border ${
+                        errors.name ? "border-destructive" : "border-border"
+                      } focus:border-primary focus:outline-none transition-colors`}
+                      placeholder="Your name"
+                    />
+                    {errors.name && (
+                      <p className="text-destructive text-sm mt-1">{errors.name}</p>
+                    )}
+                  </div>
+                  <div>
+                    <label className="block text-sm text-muted-foreground mb-2">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-3 rounded-lg bg-secondary border ${
+                        errors.email ? "border-destructive" : "border-border"
+                      } focus:border-primary focus:outline-none transition-colors`}
+                      placeholder="your@email.com"
+                    />
+                    {errors.email && (
+                      <p className="text-destructive text-sm mt-1">{errors.email}</p>
+                    )}
+                  </div>
+                  <div>
+                    <label className="block text-sm text-muted-foreground mb-2">Subject</label>
+                    <input
+                      type="text"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-3 rounded-lg bg-secondary border ${
+                        errors.subject ? "border-destructive" : "border-border"
+                      } focus:border-primary focus:outline-none transition-colors`}
+                      placeholder="Subject"
+                    />
+                    {errors.subject && (
+                      <p className="text-destructive text-sm mt-1">{errors.subject}</p>
+                    )}
+                  </div>
+                  <div>
+                    <label className="block text-sm text-muted-foreground mb-2">Message</label>
+                    <textarea
+                      name="message"
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-3 rounded-lg bg-secondary border ${
+                        errors.message ? "border-destructive" : "border-border"
+                      } focus:border-primary focus:outline-none transition-colors resize-none`}
+                      placeholder="Your message..."
+                    />
+                    {errors.message && (
+                      <p className="text-destructive text-sm mt-1">{errors.message}</p>
+                    )}
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:glow-primary transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        Send Message
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
             </motion.div>
           </div>
         </div>
