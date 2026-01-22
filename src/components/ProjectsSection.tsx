@@ -104,9 +104,8 @@ const ProjectsSection = () => {
                 className="group relative p-5 rounded-xl border-glow bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-300 cursor-pointer"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ y: -5 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: Math.min(index * 0.05, 0.3) }}
               >
                 <div className="flex items-start gap-3 mb-3">
                   <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors shrink-0">
@@ -132,12 +131,9 @@ const ProjectsSection = () => {
                   ))}
                 </div>
 
-                <motion.div
-                  className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
-                  whileHover={{ scale: 1.1 }}
-                >
+                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
                   <ExternalLink className="w-4 h-4 text-primary" />
-                </motion.div>
+                </div>
               </motion.div>
             );
           })}
