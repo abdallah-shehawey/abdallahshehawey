@@ -167,35 +167,7 @@ const handler = async (req: Request): Promise<Response> => {
       reply_to: email,
     });
 
-    console.log("Email sent to owner:", emailResponse);
-
-    // Send confirmation email to the sender with their message copy
-    const confirmationResponse = await resend.emails.send({
-      from: "Abdallah Shehawey <onboarding@resend.dev>",
-      to: [email],
-      subject: `Message Received: ${safeSubject}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; direction: ltr;">
-          <h2 style="color: #10b981;">Thank you for reaching out, ${safeName}!</h2>
-          <p style="color: #4b5563;">I have received your message and will get back to you as soon as possible.</p>
-          
-          <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #374151; margin-top: 0;">Your Message Details:</h3>
-            <p><strong>Subject:</strong> ${safeSubject}</p>
-            <p style="white-space: pre-wrap; color: #4b5563;"><strong>Message:</strong><br/>${safeMessage}</p>
-          </div>
-          
-          <p style="color: #6b7280;">Best regards,<br/>Abdallah Shehawey</p>
-          
-          <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;" />
-          <p style="color: #9ca3af; font-size: 12px;">
-            This is an automated confirmation. Please do not reply to this email.
-          </p>
-        </div>
-      `,
-    });
-
-    console.log("Confirmation email sent to sender:", confirmationResponse);
+    console.log("Email sent successfully:", emailResponse);
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
