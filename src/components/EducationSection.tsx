@@ -80,8 +80,8 @@ const EducationSection = () => {
           viewport={{ once: true }}
         >
           <span className="text-primary font-mono text-sm">&lt;education&gt;</span>
-          <h2 className="text-4xl md:text-5xl font-bold font-mono mt-2 mb-4">
-            Education & <span className="text-gradient">Training</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-mono mt-2 mb-4">
+            <span className="whitespace-nowrap">Education & <span className="text-gradient">Training</span></span>
           </h2>
         </motion.div>
 
