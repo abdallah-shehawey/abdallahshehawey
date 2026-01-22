@@ -60,7 +60,6 @@ const certifications = [
     title: "System Programming under Linux",
     period: "Jul 2025 – Present",
     instructors: "STMicroelectronics",
-    hours: "6 Months",
     topics: [
       "Building Linux utilities from scratch (cp, mv, pwd, ls, echo)",
       "Implementing custom shells (femto, pico, nano, micro)",

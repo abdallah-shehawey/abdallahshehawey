@@ -4,8 +4,8 @@ import { Users, BookOpen, Award } from "lucide-react";
 const experiences = [
   {
     title: "Vice Head of Embedded System",
-    organization: "AZEX - Al-Azhar University",
-    location: "Cairo, Egypt",
+    organization: "AZhar EXHIBTION (AZEX)",
+    location: "Al-Azhar University, Cairo",
     period: "Oct 2024 – May 2025",
     icon: Users,
     highlights: [
@@ -28,8 +28,8 @@ const experiences = [
   },
   {
     title: "Instructor & Technical Support",
-    organization: "AZEX - Al-Azhar University",
-    location: "Cairo, Egypt",
+    organization: "AZhar EXHIBTION (AZEX)",
+    location: "Al-Azhar University, Cairo",
     period: "Mar 2024 – Sep 2024",
     icon: BookOpen,
     highlights: [
