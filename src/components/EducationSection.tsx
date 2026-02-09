@@ -187,7 +187,7 @@ const EducationSection = () => {
                     <p className="text-xs text-muted-foreground mb-3">{cert.instructors}</p>
                   )}
                   <ul className="space-y-1">
-                    {cert.topics.slice(0, 2).map((topic, i) => (
+                    {cert.topics.map((topic, i) => (
                       <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
                         <span className="text-primary mt-1">▸</span>
                         {topic}
