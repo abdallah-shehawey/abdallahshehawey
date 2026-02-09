@@ -50,21 +50,27 @@ const certifications = [
     title: "Embedded Linux",
     period: "Jul 2025 – Present",
     topics: [
-      "Linux boot process, system services management (systemd)",
-      "File permissions, access control, filesystem hierarchy",
-      "Package management, shell scripting, system monitoring",
-      "Networking configuration, firewalls, security hardening"
+      "Linux boot process, system services management (systemd), and user/group administration",
+      "File permissions, access control, and filesystem hierarchy",
+      "Package management, shell scripting, disks & partitions, and system monitoring tools",
+      "Networking configuration, firewalls, and basic security hardening"
     ]
   },
   {
     title: "System Programming under Linux",
-    period: "Jul 2025 – Present",
+    period: "Jul 2025 – Feb 2026",
     instructors: "STMicroelectronics",
+    hours: "6 Months",
     topics: [
-      "Building Linux utilities from scratch (cp, mv, pwd, ls, echo)",
-      "Implementing custom shells (femto, pico, nano, micro)",
-      "Process management and minimal Linux distribution",
-      "Socket programming, Yocto build system, Multithreading"
+      "Building Linux utilities from scratch (cp, mv, pwd, ls, echo, custom CLI tools)",
+      "Implementing multiple custom shells (femto, pico, nano, micro shells)",
+      "Filesystem management and Linux file system operations",
+      "Memory and User Management",
+      "Process management and building a minimal Linux distribution and testing it on QEMU",
+      "Introduction to Yocto build system and embedded Linux routing",
+      "C / C++ OOP",
+      "RTOS / Free RTOS Concepts",
+      "Testing Concepts"
     ]
   }
 ];
