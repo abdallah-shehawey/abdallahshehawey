@@ -13,6 +13,7 @@ const education = {
 const certifications = [
   {
     title: "Embedded System Diploma",
+    hours: "230 Hours",
     period: "Sep 2023 – Mar 2024",
     instructors: "Eng. Mohamed Zaghloul, Eng. Mahmoud Karem, Eng. Ahmed Abdel Ghafar, NTI",
     topics: [
