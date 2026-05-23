@@ -10,7 +10,7 @@ const HeroSection = () => {
   const shouldReduceMotion = prefersReducedMotion || isMobile;
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden circuit-pattern pt-24">
+    <section className="relative min-h-dvh flex items-center justify-center overflow-hidden circuit-pattern pt-24">
       {/* Animated background elements - simplified on mobile */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
