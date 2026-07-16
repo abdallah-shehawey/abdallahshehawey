@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Users, BookOpen, Award } from "lucide-react";
+import { smooth } from "@/lib/motion";
 
 const experiences = [
   {
@@ -49,6 +50,7 @@ const ExperienceSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={smooth()}
         >
           <span className="text-primary font-mono text-sm">&lt;experience&gt;</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-mono mt-2 mb-4">
@@ -73,14 +75,14 @@ const ExperienceSection = () => {
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.15 }}
+                  transition={smooth(index * 0.12)}
                 >
                   {/* Timeline dot */}
                   <div className="absolute left-5 top-6 w-6 h-6 rounded-full bg-primary/20 border-2 border-primary hidden md:flex items-center justify-center">
                     <div className="w-2 h-2 rounded-full bg-primary" />
                   </div>
 
-                  <div className="p-6 rounded-xl border-glow bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-300">
+                  <div className="p-6 rounded-xl border-glow bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:-translate-y-1 transition-[transform,background-color] duration-300">
                     <div className="flex flex-wrap items-start gap-4 mb-4">
                       <div className="p-3 rounded-xl bg-primary/10">
                         <Icon className="w-6 h-6 text-primary" />

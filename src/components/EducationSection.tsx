@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Award, BookOpen } from "lucide-react";
+import { smooth, hoverLift } from "@/lib/motion";
 
 const education = {
   degree: "Electronics and Communication Engineering",
@@ -85,6 +86,7 @@ const EducationSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={smooth()}
         >
           <span className="text-primary font-mono text-sm">&lt;education&gt;</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-mono mt-2 mb-4">
@@ -98,6 +100,7 @@ const EducationSection = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={smooth()}
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 rounded-xl bg-primary/10">
@@ -132,6 +135,7 @@ const EducationSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={smooth(0.15)}
             >
               <div className="flex items-center gap-3 mb-3">
                 <Award className="w-6 h-6 text-accent" />
@@ -156,6 +160,7 @@ const EducationSection = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={smooth()}
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 rounded-xl bg-accent/10">
@@ -168,11 +173,12 @@ const EducationSection = () => {
               {certifications.map((cert, index) => (
                 <motion.div
                   key={cert.title}
-                  className="p-5 rounded-xl border-glow bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all"
+                  className="p-5 rounded-xl border-glow bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-colors duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={smooth(index * 0.08)}
+                  whileHover={hoverLift}
                 >
                   <div className="flex items-start justify-between mb-2">
                     <h4 className="font-semibold text-foreground">{cert.title}</h4>

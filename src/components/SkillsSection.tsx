@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Code, Cpu, Terminal, Wifi, Settings, Layers } from "lucide-react";
+import { smooth, hoverLift } from "@/lib/motion";
 
 const skills = {
   "Programming Languages": {
@@ -39,6 +40,7 @@ const SkillsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={smooth()}
         >
           <span className="text-primary font-mono text-sm">&lt;skills&gt;</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-mono mt-2 mb-4">
@@ -53,11 +55,12 @@ const SkillsSection = () => {
           {Object.entries(skills).map(([category, { icon: Icon, items }], index) => (
             <motion.div
               key={category}
-              className="p-6 rounded-xl border-glow bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-300 group"
-              initial={{ opacity: 0, y: 30 }}
+              className="p-6 rounded-xl border-glow bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-colors duration-300 group"
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={smooth(index * 0.08)}
+              whileHover={hoverLift}
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
@@ -85,6 +88,7 @@ const SkillsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={smooth()}
         >
           <h3 className="text-xl font-semibold font-mono mb-4 text-muted-foreground">Soft Skills</h3>
           <div className="flex flex-wrap justify-center gap-3">
@@ -92,10 +96,10 @@ const SkillsSection = () => {
               <motion.span
                 key={skill}
                 className="px-5 py-2 rounded-full border border-accent/30 text-accent bg-accent/5 hover:bg-accent/10 transition-colors"
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.94 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={smooth(index * 0.05)}
               >
                 {skill}
               </motion.span>

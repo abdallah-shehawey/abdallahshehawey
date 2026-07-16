@@ -4,6 +4,7 @@ import { Mail, Phone, MapPin, Github, Linkedin, Send, Loader2, CheckCircle } fro
 import { toast } from "sonner";
 import { z } from "zod";
 import { getSupabaseClient } from "@/lib/getSupabaseClient";
+import { smooth } from "@/lib/motion";
 
 // Validation schema
 const contactSchema = z.object({
@@ -92,6 +93,7 @@ const ContactSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={smooth()}
         >
           <span className="text-primary font-mono text-sm">&lt;contact&gt;</span>
           <h2 className="text-4xl md:text-5xl font-bold font-mono mt-2 mb-4">
@@ -110,6 +112,7 @@ const ContactSection = () => {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={smooth()}
             >
               <div className="p-6 rounded-xl border-glow bg-card/50 backdrop-blur-sm">
                 <h3 className="text-xl font-semibold font-mono mb-6">Contact Information</h3>
@@ -162,7 +165,7 @@ const ContactSection = () => {
                     href="https://github.com/abdallah-shehawey"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl border border-primary/30 hover:bg-primary/10 transition-all group"
+                    className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl border border-primary/30 hover:bg-primary/10 hover:-translate-y-0.5 transition-[transform,background-color,border-color] duration-200 group"
                   >
                     <Github className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
                     <span className="font-mono">GitHub</span>
@@ -171,7 +174,7 @@ const ContactSection = () => {
                     href="https://linkedin.com/in/abdallah-shehawey"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl border border-primary/30 hover:bg-primary/10 transition-all group"
+                    className="flex-1 flex items-center justify-center gap-3 p-4 rounded-xl border border-primary/30 hover:bg-primary/10 hover:-translate-y-0.5 transition-[transform,background-color,border-color] duration-200 group"
                   >
                     <Linkedin className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
                     <span className="font-mono">LinkedIn</span>
@@ -186,6 +189,7 @@ const ContactSection = () => {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={smooth(0.1)}
             >
               <h3 className="text-xl font-semibold font-mono mb-6">Send a Message</h3>
               
@@ -279,7 +283,7 @@ const ContactSection = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:glow-primary transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:glow-primary hover:-translate-y-0.5 active:translate-y-0 transition-[transform,background-color,box-shadow,opacity] duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <>

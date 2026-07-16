@@ -1,85 +1,55 @@
-import { motion, useReducedMotion } from "framer-motion";
 import { Github, Linkedin, Mail, Phone, MapPin, Download } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
 
+/* All animation here is pure CSS (compositor-only transform/opacity), so the
+   main thread stays free — same approach as linkora's aurora background.
+   prefers-reduced-motion is honoured globally in index.css. */
 const HeroSection = () => {
-  const prefersReducedMotion = useReducedMotion();
-  const isMobile = useIsMobile();
-  
-  // Disable heavy animations on mobile or when user prefers reduced motion
-  const shouldReduceMotion = prefersReducedMotion || isMobile;
-
   return (
     <section className="relative min-h-dvh flex items-center justify-center overflow-hidden circuit-pattern pt-24">
-      {/* Animated background elements - simplified on mobile */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute top-20 left-10 w-72 h-72 rounded-full bg-primary/10 blur-3xl will-change-transform"
-          initial={{ scale: 1, opacity: 0.3 }}
-          animate={shouldReduceMotion ? { scale: 1, opacity: 0.3 } : {
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={shouldReduceMotion ? {} : { duration: 8, repeat: Infinity, ease: "linear" }}
+      {/* Aurora background blobs, phase-shifted with negative delays */}
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="animate-aurora absolute top-20 left-10 w-72 h-72 rounded-full bg-primary/15 blur-3xl will-change-transform" />
+        <div
+          className="animate-aurora absolute bottom-20 right-10 w-96 h-96 rounded-full bg-accent/10 blur-3xl will-change-transform"
+          style={{ animationDelay: "-6s" }}
         />
-        <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-accent/10 blur-3xl will-change-transform"
-          initial={{ scale: 1.2, opacity: 0.3 }}
-          animate={shouldReduceMotion ? { scale: 1.2, opacity: 0.3 } : {
-            scale: [1.2, 1, 1.2],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={shouldReduceMotion ? {} : { duration: 10, repeat: Infinity, ease: "linear" }}
+        <div
+          className="animate-aurora hidden md:block absolute top-1/3 right-1/3 w-64 h-64 rounded-full bg-primary/10 blur-3xl will-change-transform"
+          style={{ animationDelay: "-12s" }}
         />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Text Content */}
-          <motion.div
-            className="flex-1 text-center lg:text-left"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.div
-              className="inline-block mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
+          <div className="flex-1 text-center lg:text-left">
+            <div className="animate-fade-up inline-block mb-4" style={{ animationDelay: "0.05s" }}>
               <span className="px-4 py-2 rounded-full border border-primary/30 text-primary text-sm font-mono bg-primary/5">
                 &lt;Embedded Software Engineer /&gt;
               </span>
-            </motion.div>
+            </div>
 
-            <motion.h1
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 font-mono"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
+            <h1
+              className="animate-fade-up text-4xl md:text-6xl lg:text-7xl font-bold mb-6 font-mono"
+              style={{ animationDelay: "0.15s" }}
             >
               <span className="text-foreground">Abdallah </span>
               <span className="text-gradient">Shehawey</span>
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+            <p
+              className="animate-fade-up text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl"
+              style={{ animationDelay: "0.25s" }}
             >
-              Highly motivated Embedded Software Engineer with extensive experience in 
-              developing and optimizing embedded systems. Proficient in C/C++, RTOS, 
+              Highly motivated Embedded Software Engineer with extensive experience in
+              developing and optimizing embedded systems. Proficient in C/C++, RTOS,
               and AUTOSAR architecture.
-            </motion.p>
+            </p>
 
             {/* Contact Info */}
-            <motion.div
-              className="flex flex-wrap gap-4 justify-center lg:justify-start mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+            <div
+              className="animate-fade-up flex flex-wrap gap-4 justify-center lg:justify-start mb-8"
+              style={{ animationDelay: "0.35s" }}
             >
               <a
                 href="mailto:shehawey9@gmail.com"
@@ -99,20 +69,18 @@ const HeroSection = () => {
                 <MapPin className="w-4 h-4 text-primary" />
                 <span>El Mahalla, Egypt</span>
               </div>
-            </motion.div>
+            </div>
 
             {/* Social Links */}
-            <motion.div
-              className="flex gap-4 justify-center lg:justify-start"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
+            <div
+              className="animate-fade-up flex gap-4 justify-center lg:justify-start"
+              style={{ animationDelay: "0.45s" }}
             >
               <a
                 href="https://github.com/abdallah-shehawey"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-lg border-glow bg-card hover:bg-primary/10 transition-all duration-300 group"
+                className="p-3 rounded-lg border-glow bg-card hover:bg-primary/10 hover:-translate-y-0.5 transition-[transform,background-color] duration-200 group"
               >
                 <Github className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
               </a>
@@ -120,97 +88,77 @@ const HeroSection = () => {
                 href="https://linkedin.com/in/abdallah-shehawey"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-lg border-glow bg-card hover:bg-primary/10 transition-all duration-300 group"
+                className="p-3 rounded-lg border-glow bg-card hover:bg-primary/10 hover:-translate-y-0.5 transition-[transform,background-color] duration-200 group"
               >
                 <Linkedin className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
               </a>
               <a
                 href="/Abdallah_Shehawey_CV.pdf"
                 download="Abdallah_Shehawey_CV.pdf"
-                className="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:glow-primary transition-all duration-300"
+                className="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:glow-primary hover:-translate-y-0.5 active:translate-y-0 transition-[transform,background-color,box-shadow] duration-200"
               >
                 <Download className="w-5 h-5" />
                 Download CV
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Animated Circuit/Chip Illustration */}
-          <motion.div
-            className="flex-1 flex justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
+          <div className="animate-scale-in flex-1 flex justify-center" style={{ animationDelay: "0.3s" }}>
             <div className="relative w-80 h-80 md:w-96 md:h-96">
-              {/* Main chip - simplified animation on mobile */}
-              <motion.div
-                className="absolute inset-8 rounded-2xl border-2 border-primary/50 bg-card/80 backdrop-blur-sm glow-primary will-change-transform"
-                animate={shouldReduceMotion ? {} : { rotate: [0, 2, -2, 0] }}
-                transition={shouldReduceMotion ? {} : { duration: 8, repeat: Infinity, ease: "linear" }}
-              >
+              {/* Main chip, gently floating like linkora's phone mockup */}
+              <div className="animate-float absolute inset-8 rounded-2xl border-2 border-primary/50 bg-card/80 backdrop-blur-sm glow-primary will-change-transform">
                 <div className="absolute inset-4 rounded-xl border border-primary/30 flex flex-col items-center justify-center overflow-hidden">
-                  <img 
-                    src="/STM.webp" 
-                    alt="Abdallah Shehawey" 
+                  <img
+                    src="/STM.webp"
+                    alt="Abdallah Shehawey"
                     className="w-full h-full object-cover rounded-lg"
                     loading="eager"
                     width="320"
                     height="320"
                   />
                 </div>
-              </motion.div>
+              </div>
 
               {/* Circuit lines - hidden on mobile for better performance */}
-              {!shouldReduceMotion && (
-                <>
-                  {[...Array(8)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-8 h-0.5 bg-gradient-to-r from-primary/50 to-transparent will-change-opacity"
-                      style={{
-                        top: `${20 + i * 10}%`,
-                        left: 0,
-                      }}
-                      animate={{ opacity: [0.3, 1, 0.3] }}
-                      transition={{ duration: 3, delay: i * 0.3, repeat: Infinity, ease: "linear" }}
-                    />
-                  ))}
-                  {[...Array(8)].map((_, i) => (
-                    <motion.div
-                      key={`right-${i}`}
-                      className="absolute w-8 h-0.5 bg-gradient-to-l from-primary/50 to-transparent will-change-opacity"
-                      style={{
-                        top: `${20 + i * 10}%`,
-                        right: 0,
-                      }}
-                      animate={{ opacity: [0.3, 1, 0.3] }}
-                      transition={{ duration: 3, delay: i * 0.3 + 0.5, repeat: Infinity, ease: "linear" }}
-                    />
-                  ))}
-                </>
-              )}
+              <div className="hidden md:block" aria-hidden="true">
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="animate-pulse-glow absolute w-8 h-0.5 bg-gradient-to-r from-primary/50 to-transparent"
+                    style={{
+                      top: `${20 + i * 10}%`,
+                      left: 0,
+                      animationDelay: `${i * 0.3}s`,
+                    }}
+                  />
+                ))}
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={`right-${i}`}
+                    className="animate-pulse-glow absolute w-8 h-0.5 bg-gradient-to-l from-primary/50 to-transparent"
+                    style={{
+                      top: `${20 + i * 10}%`,
+                      right: 0,
+                      animationDelay: `${i * 0.3 + 0.5}s`,
+                    }}
+                  />
+                ))}
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Scroll indicator - hidden on mobile */}
-      {!isMobile && (
-        <motion.div
-          className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={shouldReduceMotion ? {} : { y: [0, 10, 0] }}
-          transition={shouldReduceMotion ? {} : { duration: 3, repeat: Infinity, ease: "linear" }}
-        >
-          <div className="w-6 h-10 rounded-full border-2 border-primary/50 flex justify-center pt-2">
-            <motion.div
-              className="w-1.5 h-3 rounded-full bg-primary"
-              animate={shouldReduceMotion ? {} : { opacity: [1, 0.3, 1] }}
-              transition={shouldReduceMotion ? {} : { duration: 2, repeat: Infinity, ease: "linear" }}
-            />
-          </div>
-        </motion.div>
-      )}
+      <div
+        className="animate-fade-in hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2"
+        style={{ animationDelay: "1s" }}
+      >
+        <div className="w-6 h-10 rounded-full border-2 border-primary/50 flex justify-center pt-2">
+          <div className="animate-pulse-glow w-1.5 h-3 rounded-full bg-primary" />
+        </div>
+      </div>
     </section>
   );
 };

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Cpu, Home, Clock, Music, Vote, Shield, Car, Wrench, Calculator, Zap, Cloud, Battery } from "lucide-react";
+import { smooth, hoverLift } from "@/lib/motion";
 
 const projects = [
   {
@@ -85,6 +86,7 @@ const ProjectsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={smooth()}
         >
           <span className="text-primary font-mono text-sm">&lt;projects&gt;</span>
           <h2 className="text-4xl md:text-5xl font-bold font-mono mt-2 mb-4">
@@ -101,11 +103,12 @@ const ProjectsSection = () => {
             return (
               <motion.div
                 key={project.title}
-                className="group relative p-5 rounded-xl border-glow bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-300 cursor-pointer"
-                initial={{ opacity: 0, y: 30 }}
+                className="group relative p-5 rounded-xl border-glow bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-colors duration-300 cursor-pointer"
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: Math.min(index * 0.05, 0.3) }}
+                transition={smooth(Math.min(index * 0.05, 0.3))}
+                whileHover={hoverLift}
               >
                 <div className="flex items-start gap-3 mb-3">
                   <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors shrink-0">
@@ -144,6 +147,7 @@ const ProjectsSection = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
+          transition={smooth()}
         >
           <a
             href="https://github.com/abdallah-shehawey"
