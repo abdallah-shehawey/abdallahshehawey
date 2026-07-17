@@ -75,7 +75,7 @@ const Home = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  I'm an Electronics & Communication Engineering student at Al-Azhar
+                  I'm an Electronics & Communication Engineering graduate of Al-Azhar
                   University (class of 2026) who fell in love with what happens below
                   the operating system. I write firmware in C/C++, build device drivers
                   from the datasheet up, and care about deterministic, real-time code.
@@ -83,13 +83,15 @@ const Home = () => {
                 <p>
                   My focus is automotive-grade embedded software: RTOS-based
                   architectures, communication protocols (CAN, LIN, UART, SPI, I2C),
-                  and the AUTOSAR layered architecture. I led an 8-member team building
-                  a V2X collision-avoidance vehicle as my graduation project.
+                  and the AUTOSAR layered architecture. My graduation project was a V2X
+                  collision-avoidance vehicle, and these days I'm digging deeper into
+                  Embedded Linux — kernel fundamentals, Yocto, and Buildroot.
                 </p>
                 <p>
                   When I'm not shipping firmware, I teach — I've trained 200+ students
                   in C and embedded systems through AZEX and Google Developer Student
-                  Club at my university.
+                  Club at my university — and I sharpen my skills in coding
+                  competitions and hackathons.
                 </p>
               </div>
             </motion.div>

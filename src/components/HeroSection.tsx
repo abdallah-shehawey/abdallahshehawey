@@ -43,8 +43,8 @@ const HeroSection = () => {
               style={{ animationDelay: "0.25s" }}
             >
               Embedded Software Engineer specializing in C/C++, RTOS, and hardware-software
-              integration — from bare-metal drivers written from scratch to a full
-              V2X collision-avoidance system leading an 8-member graduation team.
+              integration — from bare-metal drivers written from scratch to AUTOSAR and
+              Embedded Linux, with a focus on the automotive field.
             </p>
 
             {/* Contact Info */}
