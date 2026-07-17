@@ -1,11 +1,12 @@
-import { Github, Linkedin, Mail, Phone, MapPin, Download } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MapPin, Download, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 /* All animation here is pure CSS (compositor-only transform/opacity), so the
    main thread stays free — same approach as linkora's aurora background.
    prefers-reduced-motion is honoured globally in index.css. */
 const HeroSection = () => {
   return (
-    <section className="relative min-h-dvh flex items-center justify-center overflow-hidden circuit-pattern pt-24">
+    <section className="relative min-h-[calc(100dvh-4rem)] flex items-center justify-center overflow-hidden circuit-pattern py-16">
       {/* Aurora background blobs, phase-shifted with negative delays */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="animate-aurora absolute top-20 left-10 w-72 h-72 rounded-full bg-primary/15 blur-3xl will-change-transform" />
@@ -41,9 +42,9 @@ const HeroSection = () => {
               className="animate-fade-up text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl"
               style={{ animationDelay: "0.25s" }}
             >
-              Highly motivated Embedded Software Engineer with extensive experience in
-              developing and optimizing embedded systems. Proficient in C/C++, RTOS,
-              and AUTOSAR architecture.
+              Embedded Software Engineer specializing in C/C++, RTOS, and hardware-software
+              integration — from bare-metal drivers written from scratch to a full
+              V2X collision-avoidance system leading an 8-member graduation team.
             </p>
 
             {/* Contact Info */}
@@ -71,15 +72,31 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* Social Links */}
+            {/* Primary actions + social links */}
             <div
-              className="animate-fade-up flex gap-4 justify-center lg:justify-start"
+              className="animate-fade-up flex flex-wrap items-center gap-4 justify-center lg:justify-start"
               style={{ animationDelay: "0.45s" }}
             >
+              <Link
+                to="/projects"
+                className="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:glow-primary hover:-translate-y-0.5 active:translate-y-0 transition-[transform,background-color,box-shadow] duration-200 group"
+              >
+                View My Work
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <a
+                href="/Abdallah_Shehawey_CV.pdf"
+                download="Abdallah_Shehawey_CV.pdf"
+                className="flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/30 text-primary font-semibold hover:bg-primary/10 hover:-translate-y-0.5 active:translate-y-0 transition-[transform,background-color] duration-200"
+              >
+                <Download className="w-5 h-5" />
+                Download CV
+              </a>
               <a
                 href="https://github.com/abdallah-shehawey"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="GitHub profile"
                 className="p-3 rounded-lg border-glow bg-card hover:bg-primary/10 hover:-translate-y-0.5 transition-[transform,background-color] duration-200 group"
               >
                 <Github className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
@@ -88,17 +105,10 @@ const HeroSection = () => {
                 href="https://linkedin.com/in/abdallah-shehawey"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="LinkedIn profile"
                 className="p-3 rounded-lg border-glow bg-card hover:bg-primary/10 hover:-translate-y-0.5 transition-[transform,background-color] duration-200 group"
               >
                 <Linkedin className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
-              </a>
-              <a
-                href="/Abdallah_Shehawey_CV.pdf"
-                download="Abdallah_Shehawey_CV.pdf"
-                className="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:glow-primary hover:-translate-y-0.5 active:translate-y-0 transition-[transform,background-color,box-shadow] duration-200"
-              >
-                <Download className="w-5 h-5" />
-                Download CV
               </a>
             </div>
           </div>

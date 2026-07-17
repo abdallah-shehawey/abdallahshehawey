@@ -1,21 +1,15 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, Download } from "lucide-react";
 import { easeOutExpo } from "@/lib/motion";
+import { navItems } from "@/data/nav";
 
-const navItems = [
-  { label: "Home", href: "#" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Education", href: "#education" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
-];
-
-/* Anchor navigation relies on the browser's native smooth scrolling
-   (scroll-behavior + scroll-padding-top in index.css) — no JS scroll loop. */
+/* Tab-style navigation: the active pill slides between tabs via a shared
+   framer-motion layoutId, so switching pages feels like moving one element. */
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useLocation();
 
   return (
     <motion.nav
@@ -27,24 +21,52 @@ const Navbar = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="text-xl font-bold font-mono text-gradient">
+          <Link to="/" className="text-xl font-bold font-mono text-gradient">
             &lt;AS/&gt;
-          </a>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm text-muted-foreground hover:text-primary transition-colors font-mono"
-              >
-                {item.label}
-              </a>
-            ))}
+          {/* Desktop tabs */}
+          <div className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => {
+              const isActive = pathname === item.to;
+              return (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  aria-current={isActive ? "page" : undefined}
+                  className="relative px-4 py-1.5 text-sm font-mono transition-colors"
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-tab"
+                      className="absolute inset-0 rounded-full bg-primary/10 border border-primary/30"
+                      transition={{ duration: 0.4, ease: easeOutExpo }}
+                    />
+                  )}
+                  <span
+                    className={`relative z-10 ${
+                      isActive
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-primary"
+                    }`}
+                  >
+                    {item.label}
+                  </span>
+                </Link>
+              );
+            })}
+
+            <a
+              href="/Abdallah_Shehawey_CV.pdf"
+              download="Abdallah_Shehawey_CV.pdf"
+              className="ml-4 flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:glow-primary transition-[box-shadow] duration-200"
+            >
+              <Download className="w-4 h-4" />
+              CV
+            </a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
@@ -56,7 +78,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -66,17 +88,33 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: easeOutExpo }}
           >
-            <div className="container mx-auto px-6 py-4 space-y-2">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block py-2 text-muted-foreground hover:text-primary transition-colors font-mono"
-                >
-                  {item.label}
-                </a>
-              ))}
+            <div className="container mx-auto px-6 py-4 space-y-1">
+              {navItems.map((item) => {
+                const isActive = pathname === item.to;
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    onClick={() => setIsOpen(false)}
+                    className={`block py-2.5 px-3 rounded-lg font-mono transition-colors ${
+                      isActive
+                        ? "text-primary bg-primary/10"
+                        : "text-muted-foreground hover:text-primary hover:bg-secondary/50"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+              <a
+                href="/Abdallah_Shehawey_CV.pdf"
+                download="Abdallah_Shehawey_CV.pdf"
+                className="flex items-center gap-2 py-2.5 px-3 rounded-lg font-mono text-primary-foreground bg-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                <Download className="w-4 h-4" />
+                Download CV
+              </a>
             </div>
           </motion.div>
         )}
