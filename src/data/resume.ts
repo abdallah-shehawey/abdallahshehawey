@@ -6,7 +6,7 @@ export const education = {
   university: "Al-Azhar University",
   location: "Cairo, Egypt",
   period: "Oct 2021 – Jul 2026",
-  expected: "Expected Graduation: Jul 2026",
+  expected: "Graduated: Jul 2026",
   core: [
     "Embedded Systems",
     "Electrical Power Engineering",

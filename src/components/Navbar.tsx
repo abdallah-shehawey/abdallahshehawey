@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Download } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { easeOutExpo } from "@/lib/motion";
 import { navItems } from "@/data/nav";
 
@@ -55,15 +55,6 @@ const Navbar = () => {
                 </Link>
               );
             })}
-
-            <a
-              href="/Abdallah_Shehawey_CV.pdf"
-              download="Abdallah_Shehawey_CV.pdf"
-              className="ml-4 flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:glow-primary transition-[box-shadow] duration-200"
-            >
-              <Download className="w-4 h-4" />
-              CV
-            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -106,15 +97,6 @@ const Navbar = () => {
                   </Link>
                 );
               })}
-              <a
-                href="/Abdallah_Shehawey_CV.pdf"
-                download="Abdallah_Shehawey_CV.pdf"
-                className="flex items-center gap-2 py-2.5 px-3 rounded-lg font-mono text-primary-foreground bg-primary"
-                onClick={() => setIsOpen(false)}
-              >
-                <Download className="w-4 h-4" />
-                Download CV
-              </a>
             </div>
           </motion.div>
         )}

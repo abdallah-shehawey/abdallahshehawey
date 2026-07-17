@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Phone, MapPin, Download, ArrowRight } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 /* All animation here is pure CSS (compositor-only transform/opacity), so the
@@ -84,14 +84,6 @@ const HeroSection = () => {
                 View My Work
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <a
-                href="/Abdallah_Shehawey_CV.pdf"
-                download="Abdallah_Shehawey_CV.pdf"
-                className="flex items-center gap-2 px-6 py-3 rounded-lg border border-primary/30 text-primary font-semibold hover:bg-primary/10 hover:-translate-y-0.5 active:translate-y-0 transition-[transform,background-color] duration-200"
-              >
-                <Download className="w-5 h-5" />
-                Download CV
-              </a>
               <a
                 href="https://github.com/abdallah-shehawey"
                 target="_blank"

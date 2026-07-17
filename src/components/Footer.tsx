@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { navItems } from "@/data/nav";
 
@@ -14,11 +14,6 @@ const Footer = () => {
             <span className="text-2xl font-bold font-mono text-gradient">&lt;AS/&gt;</span>
             <p className="text-sm text-muted-foreground mt-2">
               © {currentYear} Abdallah Shehawey. All rights reserved.
-            </p>
-            <p className="flex items-center justify-center md:justify-start gap-2 text-sm text-muted-foreground mt-1">
-              <span>Made with</span>
-              <Heart className="w-4 h-4 text-destructive fill-destructive" />
-              <span>for Embedded Systems</span>
             </p>
           </div>
 

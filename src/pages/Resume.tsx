@@ -207,8 +207,9 @@ const Resume = () => {
             transition={smooth(0.1)}
           >
             <a
-              href="/Abdallah_Shehawey_CV.pdf"
-              download="Abdallah_Shehawey_CV.pdf"
+              href="https://drive.google.com/uc?export=download&id=1sNBbqlUtT4RldMjX-3Owhj-LXe1v8a4j"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:glow-primary hover:-translate-y-0.5 active:translate-y-0 transition-[transform,box-shadow] duration-200"
             >
               <Download className="w-5 h-5" />
