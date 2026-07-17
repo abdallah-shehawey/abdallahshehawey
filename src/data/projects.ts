@@ -38,7 +38,7 @@ export interface Project {
 
 export const featuredProject = {
   title: "V2X Collision Avoidance System",
-  role: "Graduation Project — Team Lead (8 members)",
+  role: "Graduation Project — Team Lead",
   institution: "Electronics & Communication Engineering, Al-Azhar University",
   period: "2025 – 2026",
   github: "https://github.com/abdallah-shehawey/V2X-Collision-Avoidance",
