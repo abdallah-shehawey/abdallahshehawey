@@ -25,56 +25,39 @@ const Navbar = () => {
             &lt;AS/&gt;
           </Link>
 
-          {/* Desktop tabs */}
+          {/* Desktop tabs — internal pages only; external links (blog) live in
+              the hero + footer, not the nav. */}
           <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => {
-              const isActive = !item.external && pathname === item.to;
-              const tabClass =
-                "relative px-4 py-1.5 text-sm font-mono transition-colors";
-              const label = (
-                <span
-                  className={`relative z-10 ${
-                    isActive
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
-                  }`}
-                >
-                  {item.label}
-                </span>
-              );
-
-              if (item.external) {
+            {navItems
+              .filter((item) => !item.external)
+              .map((item) => {
+                const isActive = pathname === item.to;
                 return (
-                  <a
+                  <Link
                     key={item.label}
-                    href={item.to}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={tabClass}
+                    to={item.to}
+                    aria-current={isActive ? "page" : undefined}
+                    className="relative px-4 py-1.5 text-sm font-mono transition-colors"
                   >
-                    {label}
-                  </a>
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-tab"
+                        className="absolute inset-0 rounded-full bg-primary/10 border border-primary/30"
+                        transition={{ duration: 0.4, ease: easeOutExpo }}
+                      />
+                    )}
+                    <span
+                      className={`relative z-10 ${
+                        isActive
+                          ? "text-primary"
+                          : "text-muted-foreground hover:text-primary"
+                      }`}
+                    >
+                      {item.label}
+                    </span>
+                  </Link>
                 );
-              }
-
-              return (
-                <Link
-                  key={item.label}
-                  to={item.to}
-                  aria-current={isActive ? "page" : undefined}
-                  className={tabClass}
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-tab"
-                      className="absolute inset-0 rounded-full bg-primary/10 border border-primary/30"
-                      transition={{ duration: 0.4, ease: easeOutExpo }}
-                    />
-                  )}
-                  {label}
-                </Link>
-              );
-            })}
+              })}
           </div>
 
           {/* Mobile menu button */}
@@ -100,40 +83,25 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: easeOutExpo }}
           >
             <div className="container mx-auto px-6 py-4 space-y-1">
-              {navItems.map((item) => {
-                const isActive = !item.external && pathname === item.to;
-                const mobileClass = `block py-2.5 px-3 rounded-lg font-mono transition-colors ${
-                  isActive
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-primary hover:bg-secondary/50"
-                }`;
-
-                if (item.external) {
+              {navItems
+                .filter((item) => !item.external)
+                .map((item) => {
+                  const isActive = pathname === item.to;
                   return (
-                    <a
+                    <Link
                       key={item.label}
-                      href={item.to}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      to={item.to}
                       onClick={() => setIsOpen(false)}
-                      className={mobileClass}
+                      className={`block py-2.5 px-3 rounded-lg font-mono transition-colors ${
+                        isActive
+                          ? "text-primary bg-primary/10"
+                          : "text-muted-foreground hover:text-primary hover:bg-secondary/50"
+                      }`}
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   );
-                }
-
-                return (
-                  <Link
-                    key={item.label}
-                    to={item.to}
-                    onClick={() => setIsOpen(false)}
-                    className={mobileClass}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
+                })}
             </div>
           </motion.div>
         )}
