@@ -19,15 +19,27 @@ const Footer = () => {
 
           {/* Quick nav */}
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2" aria-label="Footer">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                to={item.to}
-                className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.external ? (
+                <a
+                  key={item.label}
+                  href={item.to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </nav>
 
           {/* Social Links */}

@@ -4,6 +4,7 @@ import { ArrowRight, Terminal, Cpu, Wrench } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import HeroSection from "@/components/HeroSection";
 import FeaturedProject from "@/components/FeaturedProject";
+import BlogCta from "@/components/BlogCta";
 import { smooth } from "@/lib/motion";
 
 const stats = [
@@ -170,6 +171,9 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Blog cross-link */}
+      <BlogCta />
 
       {/* Contact CTA */}
       <section className="py-24">

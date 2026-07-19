@@ -28,13 +28,41 @@ const Navbar = () => {
           {/* Desktop tabs */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => {
-              const isActive = pathname === item.to;
+              const isActive = !item.external && pathname === item.to;
+              const tabClass =
+                "relative px-4 py-1.5 text-sm font-mono transition-colors";
+              const label = (
+                <span
+                  className={`relative z-10 ${
+                    isActive
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-primary"
+                  }`}
+                >
+                  {item.label}
+                </span>
+              );
+
+              if (item.external) {
+                return (
+                  <a
+                    key={item.label}
+                    href={item.to}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={tabClass}
+                  >
+                    {label}
+                  </a>
+                );
+              }
+
               return (
                 <Link
                   key={item.label}
                   to={item.to}
                   aria-current={isActive ? "page" : undefined}
-                  className="relative px-4 py-1.5 text-sm font-mono transition-colors"
+                  className={tabClass}
                 >
                   {isActive && (
                     <motion.span
@@ -43,15 +71,7 @@ const Navbar = () => {
                       transition={{ duration: 0.4, ease: easeOutExpo }}
                     />
                   )}
-                  <span
-                    className={`relative z-10 ${
-                      isActive
-                        ? "text-primary"
-                        : "text-muted-foreground hover:text-primary"
-                    }`}
-                  >
-                    {item.label}
-                  </span>
+                  {label}
                 </Link>
               );
             })}
@@ -81,17 +101,34 @@ const Navbar = () => {
           >
             <div className="container mx-auto px-6 py-4 space-y-1">
               {navItems.map((item) => {
-                const isActive = pathname === item.to;
+                const isActive = !item.external && pathname === item.to;
+                const mobileClass = `block py-2.5 px-3 rounded-lg font-mono transition-colors ${
+                  isActive
+                    ? "text-primary bg-primary/10"
+                    : "text-muted-foreground hover:text-primary hover:bg-secondary/50"
+                }`;
+
+                if (item.external) {
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.to}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setIsOpen(false)}
+                      className={mobileClass}
+                    >
+                      {item.label}
+                    </a>
+                  );
+                }
+
                 return (
                   <Link
                     key={item.label}
                     to={item.to}
                     onClick={() => setIsOpen(false)}
-                    className={`block py-2.5 px-3 rounded-lg font-mono transition-colors ${
-                      isActive
-                        ? "text-primary bg-primary/10"
-                        : "text-muted-foreground hover:text-primary hover:bg-secondary/50"
-                    }`}
+                    className={mobileClass}
                   >
                     {item.label}
                   </Link>
