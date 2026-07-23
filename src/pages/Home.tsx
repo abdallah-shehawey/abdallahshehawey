@@ -70,9 +70,10 @@ const Home = () => {
               viewport={{ once: true }}
               transition={smooth()}
             >
-              <span className="text-primary font-mono text-sm">&lt;about&gt;</span>
+              <span className="text-primary font-mono text-sm">$ whoami</span>
               <h2 className="text-3xl md:text-4xl font-bold font-mono mt-2 mb-6">
-                Who <span className="text-gradient">I Am</span>
+                <span className="text-primary font-normal mr-2">$</span>
+                <span className="text-gradient">whoami</span>
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
