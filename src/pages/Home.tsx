@@ -63,14 +63,14 @@ const Home = () => {
       {/* About */}
       <section className="py-24">
         <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-start w-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={smooth()}
             >
-              <span className="text-primary font-mono text-sm">$ whoami</span>
+              <span className="text-primary font-mono text-sm">&lt;about&gt;</span>
               <h2 className="text-3xl md:text-4xl font-bold font-mono mt-2 mb-6">
                 <span className="text-primary font-normal mr-2">$</span>
                 <span className="text-gradient">whoami</span>
@@ -151,7 +151,7 @@ const Home = () => {
             </h2>
           </motion.div>
 
-          <div className="w-full">
+          <div className="max-w-5xl mx-auto">
             <FeaturedProject variant="teaser" />
           </div>
 
@@ -180,7 +180,7 @@ const Home = () => {
       <section className="py-24">
         <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
           <motion.div
-            className="w-full text-center p-10 rounded-2xl border-glow bg-card/50 backdrop-blur-sm"
+            className="max-w-4xl mx-auto text-center p-10 rounded-2xl border-glow bg-card/50 backdrop-blur-sm"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

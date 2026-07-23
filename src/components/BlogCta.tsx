@@ -10,7 +10,7 @@ const BlogCta = () => {
     <section className="py-24">
       <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
         <motion.div
-          className="w-full text-center p-10 rounded-2xl border-glow bg-card/50 backdrop-blur-sm"
+          className="max-w-4xl mx-auto text-center p-10 rounded-2xl border-glow bg-card/50 backdrop-blur-sm"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

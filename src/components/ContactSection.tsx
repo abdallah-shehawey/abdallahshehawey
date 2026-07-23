@@ -104,7 +104,7 @@ const ContactSection = () => {
           </p>
         </motion.div>
 
-        <div className="w-full">
+        <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Contact Info */}
             <motion.div
