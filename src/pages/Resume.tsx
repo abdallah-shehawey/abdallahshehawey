@@ -136,7 +136,7 @@ const CertificationsPanel = () => (
 );
 
 const ExperiencePanel = () => (
-  <motion.div className="max-w-4xl mx-auto" {...panelMotion}>
+  <motion.div className="w-full" {...panelMotion}>
     <div className="relative">
       {/* Timeline line */}
       <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent hidden md:block" />
@@ -188,7 +188,7 @@ const Resume = () => {
   return (
     <PageTransition>
       <section className="py-20 circuit-pattern">
-        <div className="container mx-auto px-6">
+        <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
           <PageHeader
             tag="resume"
             title={

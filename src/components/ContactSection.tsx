@@ -87,7 +87,7 @@ const ContactSection = () => {
 
   return (
     <section className="py-24 relative" id="contact">
-      <div className="container mx-auto px-6">
+      <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -104,7 +104,7 @@ const ContactSection = () => {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="w-full">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Contact Info */}
             <motion.div

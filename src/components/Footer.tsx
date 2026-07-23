@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <footer className="py-12 border-t border-border bg-card/30">
-      <div className="container mx-auto px-6">
+      <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo & Copyright */}
           <div className="text-center md:text-left">

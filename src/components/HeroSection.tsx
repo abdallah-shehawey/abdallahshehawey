@@ -21,10 +21,10 @@ const HeroSection = () => {
         />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+      <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-12 justify-between">
           {/* Text Content */}
-          <div className="flex-1 text-center lg:text-left">
+          <div className="flex-1 text-center lg:text-left max-w-3xl lg:max-w-none">
             <div className="animate-fade-up inline-block mb-4" style={{ animationDelay: "0.05s" }}>
               <span className="px-4 py-2 rounded-full border border-primary/30 text-primary text-sm font-mono bg-primary/5">
                 &lt;Embedded Software Engineer /&gt;
@@ -40,7 +40,7 @@ const HeroSection = () => {
             </h1>
 
             <p
-              className="animate-fade-up text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl"
+              className="animate-fade-up text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl"
               style={{ animationDelay: "0.25s" }}
             >
               Embedded Software Engineer specializing in C/C++, RTOS, and hardware-software

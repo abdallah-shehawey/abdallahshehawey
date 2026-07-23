@@ -39,7 +39,7 @@ const Home = () => {
 
       {/* Stats strip */}
       <section className="py-14 border-y border-border bg-card/30">
-        <div className="container mx-auto px-6">
+        <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <motion.div
@@ -62,8 +62,8 @@ const Home = () => {
 
       {/* About */}
       <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
+        <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-start w-full">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -136,7 +136,7 @@ const Home = () => {
 
       {/* Featured graduation project teaser */}
       <section className="py-24 circuit-pattern">
-        <div className="container mx-auto px-6">
+        <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
           <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -150,7 +150,7 @@ const Home = () => {
             </h2>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="w-full">
             <FeaturedProject variant="teaser" />
           </div>
 
@@ -177,9 +177,9 @@ const Home = () => {
 
       {/* Contact CTA */}
       <section className="py-24">
-        <div className="container mx-auto px-6">
+        <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
           <motion.div
-            className="max-w-3xl mx-auto text-center p-10 rounded-2xl border-glow bg-card/50 backdrop-blur-sm"
+            className="w-full text-center p-10 rounded-2xl border-glow bg-card/50 backdrop-blur-sm"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

@@ -18,7 +18,7 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: easeOutExpo }}
     >
-      <div className="container mx-auto px-6">
+      <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="text-xl font-bold font-mono text-gradient">

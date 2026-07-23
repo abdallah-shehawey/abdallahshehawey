@@ -20,7 +20,7 @@ const Projects = () => {
   return (
     <PageTransition>
       <section className="py-20 circuit-pattern">
-        <div className="container mx-auto px-6">
+        <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
           <PageHeader
             tag="projects"
             title={

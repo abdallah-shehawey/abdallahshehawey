@@ -8,9 +8,9 @@ import { BLOG_URL } from "@/data/nav";
 const BlogCta = () => {
   return (
     <section className="py-24">
-      <div className="container mx-auto px-6">
+      <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
         <motion.div
-          className="max-w-3xl mx-auto text-center p-10 rounded-2xl border-glow bg-card/50 backdrop-blur-sm"
+          className="w-full text-center p-10 rounded-2xl border-glow bg-card/50 backdrop-blur-sm"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

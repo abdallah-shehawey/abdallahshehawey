@@ -34,7 +34,7 @@ const softSkills = ["Problem Solving", "Team Collaboration", "Leadership", "Adap
 const SkillsSection = () => {
   return (
     <section className="py-24 relative" id="skills">
-      <div className="container mx-auto px-6">
+      <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
