@@ -77,7 +77,7 @@ const ContactSection = () => {
 
       // Reset success state after 5 seconds
       setTimeout(() => setIsSuccess(false), 5000);
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error sending message:", error);
       toast.error("Failed to send message. Please try again later.");
     } finally {

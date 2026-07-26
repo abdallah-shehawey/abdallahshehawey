@@ -342,11 +342,11 @@ const handler = async (req: Request): Promise<Response> => {
         ...corsHeaders,
       },
     });
-  } catch (error: any) {
+  } catch (error) {
     // Log detailed error server-side for debugging
     console.error("Error in send-contact-email function:", {
-      message: error.message,
-      stack: error.stack,
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
       timestamp: new Date().toISOString(),
     });
     
