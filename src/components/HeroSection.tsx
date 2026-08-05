@@ -1,6 +1,8 @@
 import { Github, Linkedin, Mail, Phone, MapPin, ArrowRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { BLOG_URL } from "@/data/nav";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
+import { WHATSAPP_URL } from "@/data/contact";
 
 /* All animation here is pure CSS (compositor-only transform/opacity), so the
    main thread stays free — same approach as linkora's aurora background.
@@ -66,6 +68,15 @@ const HeroSection = () => {
               >
                 <Phone className="w-4 h-4 text-primary" />
                 <span>+20 150 189 9476</span>
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary hover:bg-secondary/80 transition-colors text-sm"
+              >
+                <WhatsAppIcon className="w-4 h-4 text-primary" />
+                <span>WhatsApp</span>
               </a>
               <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-sm">
                 <MapPin className="w-4 h-4 text-primary" />

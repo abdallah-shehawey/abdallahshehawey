@@ -1,6 +1,8 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { navItems } from "@/data/nav";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
+import { WHATSAPP_URL } from "@/data/contact";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -61,6 +63,15 @@ const Footer = () => {
               className="p-2 rounded-lg hover:bg-secondary transition-colors"
             >
               <Linkedin className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
+            </a>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="p-2 rounded-lg hover:bg-secondary transition-colors"
+            >
+              <WhatsAppIcon className="w-5 h-5 text-muted-foreground hover:text-primary transition-colors" />
             </a>
             <a
               href="mailto:shehawey9@gmail.com"

@@ -5,6 +5,8 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { getSupabaseClient } from "@/lib/getSupabaseClient";
 import { smooth } from "@/lib/motion";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
+import { WHATSAPP_DISPLAY, WHATSAPP_URL } from "@/data/contact";
 
 // Validation schema
 const contactSchema = z.object({
@@ -144,6 +146,21 @@ const ContactSection = () => {
                     </div>
                   </a>
 
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 p-3 rounded-lg hover:bg-secondary/50 transition-colors group"
+                  >
+                    <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                      <WhatsAppIcon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground">WhatsApp</p>
+                      <p className="text-foreground">{WHATSAPP_DISPLAY}</p>
+                    </div>
+                  </a>
+
                   <div className="flex items-center gap-4 p-3 rounded-lg">
                     <div className="p-2 rounded-lg bg-primary/10">
                       <MapPin className="w-5 h-5 text-primary" />
@@ -180,6 +197,16 @@ const ContactSection = () => {
                     <span className="font-mono">LinkedIn</span>
                   </a>
                 </div>
+
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 flex items-center justify-center gap-3 p-4 rounded-xl bg-primary text-primary-foreground font-semibold hover:glow-primary hover:-translate-y-0.5 active:translate-y-0 transition-[transform,background-color,box-shadow] duration-200 group"
+                >
+                  <WhatsAppIcon className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                  <span className="font-mono">Chat on WhatsApp</span>
+                </a>
               </div>
             </motion.div>
 
