@@ -42,9 +42,17 @@ const EducationPanel = () => (
       <p className="text-primary font-mono mb-1">{education.university}</p>
       <p className="text-muted-foreground text-sm mb-1">{education.location}</p>
       <p className="text-muted-foreground text-sm mb-4">{education.period}</p>
-      <span className="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-sm mb-4">
-        {education.expected}
-      </span>
+      <div className="flex flex-wrap gap-2 mb-4">
+        <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-sm">
+          {education.expected}
+        </span>
+        <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm">
+          Cumulative Grade: {education.grade}
+        </span>
+        <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm">
+          Graduation Project: {education.projectGrade}
+        </span>
+      </div>
       <div className="border-t border-border pt-4">
         <p className="text-sm text-muted-foreground mb-2">Core Areas:</p>
         <div className="flex flex-wrap gap-2">

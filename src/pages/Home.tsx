@@ -78,8 +78,9 @@ const Home = () => {
               <div className="space-y-4 text-muted-foreground">
                 <p>
                   I'm an Electronics & Communication Engineering graduate of Al-Azhar
-                  University (class of 2026) who fell in love with what happens below
-                  the operating system. I write firmware in C/C++, build device drivers
+                  University (May 2026 — Cumulative Grade: Very Good, Graduation
+                  Project: Excellent) who fell in love with what happens below the
+                  operating system. I write firmware in C/C++, build device drivers
                   from the datasheet up, and care about deterministic, real-time code.
                 </p>
                 <p>

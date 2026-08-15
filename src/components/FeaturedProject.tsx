@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Github, GraduationCap, Radio, Cpu, Camera, MonitorSmartphone } from "lucide-react";
+import { ArrowRight, Award, Github, GraduationCap, Radio, Cpu, Camera, MonitorSmartphone } from "lucide-react";
 import { smooth } from "@/lib/motion";
 import { featuredProject } from "@/data/projects";
 
@@ -43,6 +43,10 @@ const FeaturedProject = ({ variant = "full" }: FeaturedProjectProps) => {
           </span>
           <span className="px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-sm font-mono">
             {featuredProject.period}
+          </span>
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-mono">
+            <Award className="w-4 h-4" />
+            {featuredProject.grade}
           </span>
         </div>
 

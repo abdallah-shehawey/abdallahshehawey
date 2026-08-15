@@ -41,6 +41,7 @@ export const featuredProject = {
   role: "Graduation Project — Team Lead",
   institution: "Electronics & Communication Engineering, Al-Azhar University",
   period: "2025 – 2026",
+  grade: "Graded Excellent",
   github: "https://github.com/abdallah-shehawey/V2X-Collision-Avoidance",
   description:
     "A Vehicle-to-Everything (V2X) collision-avoidance system built on a scaled car prototype: it talks to other vehicles (V2V), road infrastructure (V2I/V2N), and pedestrians (V2P) to detect and prevent collisions in real time.",

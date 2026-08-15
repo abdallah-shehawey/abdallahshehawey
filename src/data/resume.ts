@@ -5,8 +5,12 @@ export const education = {
   degree: "Electronics and Communication Engineering",
   university: "Al-Azhar University",
   location: "Cairo, Egypt",
-  period: "Oct 2021 – Jul 2026",
-  expected: "Graduated: Jul 2026",
+  period: "Oct 2021 – May 2026",
+  expected: "Graduated: May 2026",
+  /** Cumulative degree grade (Egyptian scale: جيد جدا). */
+  grade: "Very Good",
+  /** Graduation-project grade (امتياز). */
+  projectGrade: "Excellent",
   core: [
     "Embedded Systems",
     "Electrical Power Engineering",
