@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#121a23"/>
+      <stop offset="1" stop-color="#0a0d11"/>
+    </linearGradient>
+    <!-- One sweep across the whole tile: green bottom-left to teal top-right
+         (the site's --accent and --primary). -->
+    <linearGradient id="trace" gradientUnits="userSpaceOnUse" x1="8" y1="56" x2="56" y2="8">
+      <stop offset="0" stop-color="#2eb873"/>
+      <stop offset="1" stop-color="#26d9d9"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" fill="url(#bg)"/>
+  <g stroke="#26d9d9" stroke-opacity=".35" stroke-width="2" stroke-linecap="round">
+    <path d="M24 3v4M32 3v4M40 3v4M24 57v4M32 57v4M40 57v4M3 24h4M3 32h4M3 40h4M57 24h4M57 32h4M57 40h4"/>
+  </g>
+  <g transform="translate(32 32) scale(.86) translate(-32 -32)">
+    <g fill="none" stroke="url(#trace)" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 46.5V23.5l6-6h5l6 6v23M11 34h17"/>
+      <path d="M53 17.5H40l-4 4V28l4 4h9l4 4v6.5l-4 4H35"/>
+    </g>
+    <g fill="#0c0e12" stroke="url(#trace)" stroke-width="2.6">
+      <circle cx="11" cy="46.5" r="3.7"/>
+      <circle cx="53" cy="17.5" r="3.7"/>
+    </g>
+  </g>
+</svg>
