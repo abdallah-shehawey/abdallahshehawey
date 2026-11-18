@@ -10,6 +10,7 @@ import {
   Code2,
   Cpu,
   Gamepad2,
+  Globe,
   GraduationCap,
   Home,
   Landmark,
@@ -19,6 +20,7 @@ import {
   MessageCircle,
   MessagesSquare,
   Music,
+  Package,
   Palette,
   Shield,
   Sprout,
@@ -31,6 +33,9 @@ import {
 
 export type ProjectCategory = "ARM" | "AVR" | "Linux" | "IoT" | "Web" | "Other";
 
+/** Section a project is listed under on the projects page, in display order. */
+export type ProjectGroup = "Embedded" | "Linux" | "Other";
+
 export interface ProjectVariant {
   label: string;
   url: string;
@@ -41,6 +46,7 @@ export interface Project {
   description: string;
   icon: LucideIcon;
   tags: string[];
+  group: ProjectGroup;
   categories: ProjectCategory[];
   /** GitHub repo — projects with a link are listed first and open on click. */
   github?: string;
@@ -81,8 +87,9 @@ export const featuredProject = {
   ],
 };
 
-/* Grouped embedded → Linux → other, strongest first inside each group;
-   projects without a public repo close the list (cards with a repo open it). */
+/* Listed section by section (see projectGroups), strongest first inside each
+   and projects without a public repo at the end of their section; cards with
+   a repo open it on click. */
 export const projects: Project[] = [
   {
     title: "STM32 COTS Driver Libraries",
@@ -90,6 +97,7 @@ export const projects: Project[] = [
       "Bare-metal driver libraries for three STM32 boards (F103, F401, F446) — RCC, GPIO, NVIC, UART, SPI, DMA — built without vendor HAL",
     icon: Cpu,
     tags: ["ARM Cortex-M", "STM32", "Bare-metal"],
+    group: "Embedded",
     categories: ["ARM"],
     github: "https://github.com/abdallah-shehawey/COTS-STM32F446xx",
     variants: [
@@ -104,6 +112,7 @@ export const projects: Project[] = [
       "Built an MP3 player on ARM Cortex-M4 with smooth audio playback from SD card storage",
     icon: Music,
     tags: ["ARM Cortex-M4", "Audio", "SD Card"],
+    group: "Embedded",
     categories: ["ARM"],
     github: "https://github.com/abdallah-shehawey/MP3_Player",
   },
@@ -113,6 +122,7 @@ export const projects: Project[] = [
       "Complete MCAL/HAL driver library for the ATmega32 family — DIO, ADC, UART, I2C, SPI, PWM, EEPROM and more, written from scratch",
     icon: CircuitBoard,
     tags: ["AVR", "MCAL / HAL", "Embedded C"],
+    group: "Embedded",
     categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/ATMega32-Drivers",
   },
@@ -122,6 +132,7 @@ export const projects: Project[] = [
       "A lightweight real-time operating system stack for AVR microcontrollers — scheduler and task management built from first principles",
     icon: Layers,
     tags: ["RTOS", "Scheduler", "AVR"],
+    group: "Embedded",
     categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/RTOS-AVR",
   },
@@ -131,6 +142,7 @@ export const projects: Project[] = [
       "Bank database system running on an AVR microcontroller",
     icon: Landmark,
     tags: ["AVR", "Embedded C", "EEPROM"],
+    group: "Embedded",
     categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/Bank_DataBase",
   },
@@ -140,6 +152,7 @@ export const projects: Project[] = [
       "Secure access-controlled safe with dynamic passwords persisted in EEPROM and login-attempt lockout",
     icon: Shield,
     tags: ["Security", "EEPROM", "Keypad"],
+    group: "Embedded",
     categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/SECURITY-Files",
   },
@@ -149,6 +162,7 @@ export const projects: Project[] = [
       "Developed a fully integrated home automation system with IoT capabilities",
     icon: Home,
     tags: ["IoT", "Embedded C", "AVR"],
+    group: "Embedded",
     categories: ["AVR", "IoT"],
     github: "https://github.com/abdallah-shehawey/Smart-Home",
   },
@@ -158,6 +172,7 @@ export const projects: Project[] = [
       "Room automation project on an AVR microcontroller",
     icon: Lightbulb,
     tags: ["AVR", "Embedded C", "Automation"],
+    group: "Embedded",
     categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/Smart-Room",
   },
@@ -167,6 +182,7 @@ export const projects: Project[] = [
       "Engineered a real-time clock system with precision timing using AVR",
     icon: Clock,
     tags: ["AVR", "I2C", "LCD"],
+    group: "Embedded",
     categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/Real-Time-Clock",
   },
@@ -176,89 +192,9 @@ export const projects: Project[] = [
       "Garden automation project on an AVR microcontroller, completed in four hours",
     icon: Sprout,
     tags: ["AVR", "Embedded C", "Sensors"],
+    group: "Embedded",
     categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/Smart-Garden",
-  },
-  {
-    title: "WhatsApp Desktop for Linux",
-    description:
-      "Unofficial WhatsApp Web desktop client for Linux on Electron — tray integration, native notifications, voice/video calls, system fonts and Arabic text fixes; shipped as rpm, deb and Arch packages",
-    icon: MessageCircle,
-    tags: ["Electron", "Linux Desktop", "Packaging"],
-    categories: ["Linux"],
-    github: "https://github.com/abdallah-shehawey/whatsapp-desktop",
-  },
-  {
-    title: "WhatsApp GTK4 Client",
-    description:
-      "A ~120 KB WhatsApp Web client written in C on GTK4 + WebKitGTK 6 — working image paste, tray unread badge, per-message notifications and desktop-font rendering",
-    icon: MessagesSquare,
-    tags: ["C", "GTK4", "WebKitGTK"],
-    categories: ["Linux"],
-    github: "https://github.com/abdallah-shehawey/whatsapp",
-  },
-  {
-    title: "Linux System Programming",
-    description:
-      "Linux utilities rebuilt from scratch (cp, mv, ls, echo), four custom shells, process & memory management — STMicroelectronics training",
-    icon: Terminal,
-    tags: ["Linux", "Syscalls", "C"],
-    categories: ["Linux"],
-    github: "https://github.com/abdallah-shehawey/System-programming-in-Linux",
-  },
-  {
-    title: "ArtCraft Open-Source Contributions",
-    description:
-      "Upstream pull requests to the Craft App Suite of Rust desktop apps — window-size restore on Linux, native Adwaita window buttons on GNOME Wayland and persistent interface scaling, built on a shared egui fork",
-    icon: Palette,
-    tags: ["Rust", "egui", "Open Source"],
-    categories: ["Linux", "Other"],
-    github: "https://github.com/abdallah-shehawey/ArtCraft",
-  },
-  {
-    title: "Gaming on Linux",
-    description:
-      "Play any Windows game on Linux from your Steam library with all your controllers — setup scripts for Fedora, Ubuntu/Mint/Debian and Arch plus an Arabic video guide",
-    icon: Gamepad2,
-    tags: ["Linux", "Steam / Proton", "Shell"],
-    categories: ["Linux"],
-    github: "https://github.com/abdallah-shehawey/Gaming-on-Linux",
-  },
-  {
-    title: "Linux Simple Shell",
-    description:
-      "A simple command shell for Linux written in C",
-    icon: Terminal,
-    tags: ["Linux", "C", "Shell"],
-    categories: ["Linux"],
-    github: "https://github.com/abdallah-shehawey/Linux-Simple-Shell",
-  },
-  {
-    title: "Linkora",
-    description:
-      "A link-in-bio platform (Linktree alternative) with a marketing landing page and live theme showcase",
-    icon: Link,
-    tags: ["Next.js", "TypeScript", "Firebase"],
-    categories: ["Web"],
-    github: "https://github.com/abdallah-shehawey/linkora",
-  },
-  {
-    title: "EECE Class of 2026 Website",
-    description:
-      "Interactive graduation website for the Al-Azhar Electronics & Communication class of 2026 — live multi-event countdown, student yearbook grid and project team cards",
-    icon: GraduationCap,
-    tags: ["JavaScript", "Web", "UI"],
-    categories: ["Web"],
-    github: "https://github.com/abdallah-shehawey/EECE-Azhar",
-  },
-  {
-    title: "Daftar Accounts",
-    description:
-      "Desktop ledger app for customer accounts with a full Arabic RTL UI — transactions, totals, PDF statements and CSV export",
-    icon: BookText,
-    tags: ["Python", "PySide6 / Qt", "Desktop"],
-    categories: ["Other"],
-    github: "https://github.com/abdallah-shehawey/QT-Application",
   },
   {
     title: "Instructions Decoder",
@@ -266,6 +202,7 @@ export const projects: Project[] = [
       "An assembler written in C that decodes and executes custom instructions efficiently",
     icon: Calculator,
     tags: ["C", "Assembler", "Parsing"],
+    group: "Embedded",
     categories: ["Other"],
     github: "https://github.com/abdallah-shehawey/Assempler",
   },
@@ -275,6 +212,7 @@ export const projects: Project[] = [
       "A collection of projects written in the C language",
     icon: Code2,
     tags: ["C", "Data Structures", "Console"],
+    group: "Embedded",
     categories: ["Other"],
     github: "https://github.com/abdallah-shehawey/C-Project",
   },
@@ -284,6 +222,7 @@ export const projects: Project[] = [
       "Problem-solving solutions for the ICPC Assiut University training sheet",
     icon: Trophy,
     tags: ["C++", "Problem Solving", "ICPC"],
+    group: "Embedded",
     categories: ["Other"],
     github: "https://github.com/abdallah-shehawey/PS_Assuit_Sheet",
   },
@@ -292,6 +231,7 @@ export const projects: Project[] = [
     description: "Built a secure voting platform with real-time data processing",
     icon: Vote,
     tags: ["Security", "UART", "LCD"],
+    group: "Embedded",
     categories: ["AVR"],
   },
   {
@@ -300,6 +240,7 @@ export const projects: Project[] = [
       "Created a real-time traffic management system, reducing delays by 15%",
     icon: Car,
     tags: ["RTOS", "Timers", "State Machine"],
+    group: "Embedded",
     categories: ["AVR"],
   },
   {
@@ -308,6 +249,7 @@ export const projects: Project[] = [
       "Implemented a tool to monitor and debug CAN bus communication",
     icon: Cpu,
     tags: ["CAN", "Diagnostics", "STM32"],
+    group: "Embedded",
     categories: ["ARM"],
   },
   {
@@ -316,6 +258,7 @@ export const projects: Project[] = [
       "Reduced memory usage by 25% and improved execution speed by 30%",
     icon: Zap,
     tags: ["Optimization", "Memory", "Performance"],
+    group: "Embedded",
     categories: ["Other"],
   },
   {
@@ -324,6 +267,7 @@ export const projects: Project[] = [
       "Built an IoT-based weather station using ESP32 and cloud services",
     icon: Cloud,
     tags: ["ESP32", "IoT", "Cloud"],
+    group: "Embedded",
     categories: ["IoT"],
   },
   {
@@ -332,6 +276,7 @@ export const projects: Project[] = [
       "Designed an efficient power monitoring system for lithium-ion batteries",
     icon: Battery,
     tags: ["Power", "ADC", "Monitoring"],
+    group: "Embedded",
     categories: ["Other"],
   },
   {
@@ -340,8 +285,115 @@ export const projects: Project[] = [
       "Designed a tool that reduced testing time by 30%, improving development efficiency",
     icon: Wrench,
     tags: ["Debugging", "Testing", "Tools"],
+    group: "Embedded",
     categories: ["Other"],
   },
+  {
+    title: "WhatsApp Desktop for Linux",
+    description:
+      "Unofficial WhatsApp Web desktop client for Linux on Electron — tray integration, native notifications, voice/video calls, system fonts and Arabic text fixes; shipped as rpm, deb and Arch packages",
+    icon: MessageCircle,
+    tags: ["Electron", "Linux Desktop", "Packaging"],
+    group: "Linux",
+    categories: ["Linux"],
+    github: "https://github.com/abdallah-shehawey/whatsapp-desktop",
+  },
+  {
+    title: "WhatsApp GTK4 Client",
+    description:
+      "A ~120 KB WhatsApp Web client written in C on GTK4 + WebKitGTK 6 — working image paste, tray unread badge, per-message notifications and desktop-font rendering",
+    icon: MessagesSquare,
+    tags: ["C", "GTK4", "WebKitGTK"],
+    group: "Linux",
+    categories: ["Linux"],
+    github: "https://github.com/abdallah-shehawey/whatsapp",
+  },
+  {
+    title: "shinux Package Repository",
+    description:
+      "A signed package repository for dnf, apt and native Arch packages, hosted free on GitHub Pages — add it once with one command, then install and upgrade like any distro package",
+    icon: Package,
+    tags: ["Linux", "Packaging", "GitHub Pages"],
+    group: "Linux",
+    categories: ["Linux"],
+    github: "https://github.com/abdallah-shehawey/shinux-repo",
+  },
+  {
+    title: "ArtCraft Open-Source Contributions",
+    description:
+      "Upstream pull requests to the Craft App Suite of Rust desktop apps — window-size restore on Linux, native Adwaita window buttons on GNOME Wayland and persistent interface scaling, built on a shared egui fork",
+    icon: Palette,
+    tags: ["Rust", "egui", "Open Source"],
+    group: "Linux",
+    categories: ["Linux", "Other"],
+    github: "https://github.com/abdallah-shehawey/ArtCraft",
+  },
+  {
+    title: "Gaming on Linux",
+    description:
+      "Play any Windows game on Linux from your Steam library with all your controllers — setup scripts for Fedora, Ubuntu/Mint/Debian and Arch plus an Arabic video guide",
+    icon: Gamepad2,
+    tags: ["Linux", "Steam / Proton", "Shell"],
+    group: "Linux",
+    categories: ["Linux"],
+    github: "https://github.com/abdallah-shehawey/Gaming-on-Linux",
+  },
+  {
+    title: "Linux Simple Shell",
+    description:
+      "A simple command shell for Linux written in C",
+    icon: Terminal,
+    tags: ["Linux", "C", "Shell"],
+    group: "Linux",
+    categories: ["Linux"],
+    github: "https://github.com/abdallah-shehawey/Linux-Simple-Shell",
+  },
+  {
+    title: "shinux — Linux Blog & Q&A Platform",
+    description:
+      "A Linux technical blog, structured tutorial tracks and a community Q&A engine — Markdown articles, table of contents, RSS feeds; live on Vercel",
+    icon: Globe,
+    tags: ["Next.js", "Supabase", "Tailwind CSS"],
+    group: "Other",
+    categories: ["Web", "Linux"],
+    github: "https://github.com/abdallah-shehawey/shinux-website",
+  },
+  {
+    title: "Linkora",
+    description:
+      "A link-in-bio platform (Linktree alternative) with a marketing landing page and live theme showcase",
+    icon: Link,
+    tags: ["Next.js", "TypeScript", "Firebase"],
+    group: "Other",
+    categories: ["Web"],
+    github: "https://github.com/abdallah-shehawey/linkora",
+  },
+  {
+    title: "EECE Class of 2026 Website",
+    description:
+      "Interactive graduation website for the Al-Azhar Electronics & Communication class of 2026 — live multi-event countdown, student yearbook grid and project team cards",
+    icon: GraduationCap,
+    tags: ["JavaScript", "Web", "UI"],
+    group: "Other",
+    categories: ["Web"],
+    github: "https://github.com/abdallah-shehawey/EECE-Azhar",
+  },
+  {
+    title: "Daftar Accounts",
+    description:
+      "Desktop ledger app for customer accounts with a full Arabic RTL UI — transactions, totals, PDF statements and CSV export",
+    icon: BookText,
+    tags: ["Python", "PySide6 / Qt", "Desktop"],
+    group: "Other",
+    categories: ["Other"],
+    github: "https://github.com/abdallah-shehawey/QT-Application",
+  },
+];
+
+export const projectGroups: { value: ProjectGroup; label: string }[] = [
+  { value: "Embedded", label: "Embedded Systems" },
+  { value: "Linux", label: "Linux" },
+  { value: "Other", label: "Other Projects" },
 ];
 
 export const projectCategories: { label: string; value: ProjectCategory | "All" }[] = [
