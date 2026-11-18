@@ -351,6 +351,15 @@ export const projects: Project[] = [
     github: "https://github.com/abdallah-shehawey/Embedded-Linux-Notes",
   },
   {
+    title: "System Programming in Linux",
+    description:
+      "Study roadmap from the STMicroelectronics training — material and hands-on C for processes and syscalls, memory allocators, file systems, custom shells, OOP in C, RTOS concepts and building a Linux distro",
+    icon: Terminal,
+    tags: ["Linux", "Syscalls", "C"],
+    group: "Notes",
+    github: "https://github.com/abdallah-shehawey/System-programming-in-Linux",
+  },
+  {
     title: "DevOps Track (DEPI)",
     description:
       "DevOps training materials and hands-on labs from the Digital Egypt Pioneers Initiative — CI/CD, Linux, Git, Docker and cloud fundamentals",
