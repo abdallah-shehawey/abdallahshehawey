@@ -11,7 +11,6 @@ import {
   Code2,
   Container,
   Cpu,
-  FileText,
   Gamepad2,
   Globe,
   GraduationCap,
@@ -324,15 +323,6 @@ export const projects: Project[] = [
     github: "https://github.com/abdallah-shehawey/Gaming-on-Linux",
   },
   {
-    title: "dotfiles-linux",
-    description:
-      "Personal Ubuntu and Fedora dotfiles, apps and system customization — Zsh, Neovim, GNOME and themes for a consistent dev environment on a new machine",
-    icon: Settings,
-    tags: ["Linux", "Zsh", "Neovim"],
-    group: "Linux",
-    github: "https://github.com/abdallah-shehawey/dotfiles-linux",
-  },
-  {
     title: "Linux Simple Shell",
     description:
       "A simple command shell for Linux written in C",
@@ -369,13 +359,13 @@ export const projects: Project[] = [
     github: "https://github.com/abdallah-shehawey/DevOps",
   },
   {
-    title: "V2X Graduation Project Docs",
+    title: "dotfiles-linux",
     description:
-      "Research and planning material behind the V2X graduation project — proposal drafts, a Siemens project write-up, lecture notes and early car-detection notebooks with a sample output video",
-    icon: FileText,
-    tags: ["Proposal", "Research", "Jupyter"],
+      "Personal Ubuntu and Fedora dotfiles, apps and system customization — Zsh, Neovim, GNOME and themes for a consistent dev environment on a new machine",
+    icon: Settings,
+    tags: ["Linux", "Zsh", "Neovim"],
     group: "Notes",
-    github: "https://github.com/abdallah-shehawey/Graduation_Project_Data",
+    github: "https://github.com/abdallah-shehawey/dotfiles-linux",
   },
   {
     title: "shinux — Linux Blog & Q&A Platform",
