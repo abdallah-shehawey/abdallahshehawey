@@ -1,7 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Battery,
-  BookOpen,
   BookText,
   Calculator,
   Car,
@@ -9,11 +8,8 @@ import {
   Clock,
   Cloud,
   Code2,
-  Container,
   Cpu,
-  FileText,
   Gamepad2,
-  Globe,
   GraduationCap,
   Home,
   Landmark,
@@ -23,9 +19,7 @@ import {
   MessageCircle,
   MessagesSquare,
   Music,
-  Package,
   Palette,
-  Settings,
   Shield,
   Sprout,
   Terminal,
@@ -105,13 +99,13 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "RTOS from Scratch on AVR",
+    title: "MP3 Player",
     description:
-      "A lightweight real-time operating system stack for AVR microcontrollers — scheduler and task management built from first principles",
-    icon: Layers,
-    tags: ["RTOS", "Scheduler", "AVR"],
-    categories: ["AVR"],
-    github: "https://github.com/abdallah-shehawey/RTOS-AVR",
+      "Built an MP3 player on ARM Cortex-M4 with smooth audio playback from SD card storage",
+    icon: Music,
+    tags: ["ARM Cortex-M4", "Audio", "SD Card"],
+    categories: ["ARM"],
+    github: "https://github.com/abdallah-shehawey/MP3_Player",
   },
   {
     title: "ATmega32 Driver Suite",
@@ -123,49 +117,13 @@ export const projects: Project[] = [
     github: "https://github.com/abdallah-shehawey/ATMega32-Drivers",
   },
   {
-    title: "NiroTronix Motor Driver Library",
+    title: "RTOS from Scratch on AVR",
     description:
-      "Arduino library for the NiroTronix MD series brushed DC motor drivers — PWM/DIR speed control, smooth ramps and 25 kHz PWM, published to the Arduino Library Registry",
-    icon: Zap,
-    tags: ["Arduino", "PWM", "Motor Control"],
+      "A lightweight real-time operating system stack for AVR microcontrollers — scheduler and task management built from first principles",
+    icon: Layers,
+    tags: ["RTOS", "Scheduler", "AVR"],
     categories: ["AVR"],
-    github: "https://github.com/abdallah-shehawey/NiroTronixMotorDriver",
-  },
-  {
-    title: "MP3 Player",
-    description:
-      "Built an MP3 player on ARM Cortex-M4 with smooth audio playback from SD card storage",
-    icon: Music,
-    tags: ["ARM Cortex-M4", "Audio", "SD Card"],
-    categories: ["ARM"],
-    github: "https://github.com/abdallah-shehawey/MP3_Player",
-  },
-  {
-    title: "Smart Home",
-    description:
-      "Developed a fully integrated home automation system with IoT capabilities",
-    icon: Home,
-    tags: ["IoT", "Embedded C", "AVR"],
-    categories: ["AVR", "IoT"],
-    github: "https://github.com/abdallah-shehawey/Smart-Home",
-  },
-  {
-    title: "Smart Room",
-    description:
-      "Room automation project on an AVR microcontroller",
-    icon: Lightbulb,
-    tags: ["AVR", "Embedded C", "Automation"],
-    categories: ["AVR"],
-    github: "https://github.com/abdallah-shehawey/Smart-Room",
-  },
-  {
-    title: "Smart Garden",
-    description:
-      "Garden automation project on an AVR microcontroller, completed in four hours",
-    icon: Sprout,
-    tags: ["AVR", "Embedded C", "Sensors"],
-    categories: ["AVR"],
-    github: "https://github.com/abdallah-shehawey/Smart-Garden",
+    github: "https://github.com/abdallah-shehawey/RTOS-AVR",
   },
   {
     title: "Bank Database",
@@ -186,6 +144,24 @@ export const projects: Project[] = [
     github: "https://github.com/abdallah-shehawey/SECURITY-Files",
   },
   {
+    title: "Smart Home",
+    description:
+      "Developed a fully integrated home automation system with IoT capabilities",
+    icon: Home,
+    tags: ["IoT", "Embedded C", "AVR"],
+    categories: ["AVR", "IoT"],
+    github: "https://github.com/abdallah-shehawey/Smart-Home",
+  },
+  {
+    title: "Smart Room",
+    description:
+      "Room automation project on an AVR microcontroller",
+    icon: Lightbulb,
+    tags: ["AVR", "Embedded C", "Automation"],
+    categories: ["AVR"],
+    github: "https://github.com/abdallah-shehawey/Smart-Room",
+  },
+  {
     title: "RTC Watch",
     description:
       "Engineered a real-time clock system with precision timing using AVR",
@@ -193,6 +169,15 @@ export const projects: Project[] = [
     tags: ["AVR", "I2C", "LCD"],
     categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/Real-Time-Clock",
+  },
+  {
+    title: "Smart Garden",
+    description:
+      "Garden automation project on an AVR microcontroller, completed in four hours",
+    icon: Sprout,
+    tags: ["AVR", "Embedded C", "Sensors"],
+    categories: ["AVR"],
+    github: "https://github.com/abdallah-shehawey/Smart-Garden",
   },
   {
     title: "WhatsApp Desktop for Linux",
@@ -211,15 +196,6 @@ export const projects: Project[] = [
     tags: ["C", "GTK4", "WebKitGTK"],
     categories: ["Linux"],
     github: "https://github.com/abdallah-shehawey/whatsapp",
-  },
-  {
-    title: "shinux Package Repository",
-    description:
-      "A signed package repository for dnf, apt and native Arch packages, hosted free on GitHub Pages — add it once with one command, then install and upgrade like any distro package",
-    icon: Package,
-    tags: ["Linux", "Packaging", "GitHub Pages"],
-    categories: ["Linux"],
-    github: "https://github.com/abdallah-shehawey/shinux-repo",
   },
   {
     title: "Linux System Programming",
@@ -249,24 +225,6 @@ export const projects: Project[] = [
     github: "https://github.com/abdallah-shehawey/Gaming-on-Linux",
   },
   {
-    title: "Embedded Linux Notes",
-    description:
-      "Personal notes and resources from a self-study journey into Embedded Linux — a living document of the learning process",
-    icon: BookOpen,
-    tags: ["Embedded Linux", "Notes", "Self-study"],
-    categories: ["Linux"],
-    github: "https://github.com/abdallah-shehawey/Embedded-Linux-Notes",
-  },
-  {
-    title: "dotfiles-linux",
-    description:
-      "Personal Ubuntu and Fedora dotfiles, apps and system customization — Zsh, Neovim, GNOME and themes for a consistent dev environment on a new machine",
-    icon: Settings,
-    tags: ["Linux", "Zsh", "Neovim"],
-    categories: ["Linux"],
-    github: "https://github.com/abdallah-shehawey/dotfiles-linux",
-  },
-  {
     title: "Linux Simple Shell",
     description:
       "A simple command shell for Linux written in C",
@@ -274,33 +232,6 @@ export const projects: Project[] = [
     tags: ["Linux", "C", "Shell"],
     categories: ["Linux"],
     github: "https://github.com/abdallah-shehawey/Linux-Simple-Shell",
-  },
-  {
-    title: "Linux Utilities Docs",
-    description:
-      "Documentation of core Linux shell utilities — syntax and examples for pwd and friends",
-    icon: FileText,
-    tags: ["Linux", "Shell", "Docs"],
-    categories: ["Linux"],
-    github: "https://github.com/abdallah-shehawey/SPL-Udemy",
-  },
-  {
-    title: "shinux — Linux Blog & Q&A Platform",
-    description:
-      "A Linux technical blog, structured tutorial tracks and a community Q&A engine — Markdown articles, table of contents, RSS feeds; live on Vercel",
-    icon: Globe,
-    tags: ["Next.js", "Supabase", "Tailwind CSS"],
-    categories: ["Web", "Linux"],
-    github: "https://github.com/abdallah-shehawey/shinux-website",
-  },
-  {
-    title: "DevOps Track (DEPI)",
-    description:
-      "DevOps training materials and hands-on labs from the Digital Egypt Pioneers Initiative — CI/CD, Linux, Git, Docker and cloud fundamentals",
-    icon: Container,
-    tags: ["DevOps", "Docker", "CI/CD"],
-    categories: ["Linux", "Other"],
-    github: "https://github.com/abdallah-shehawey/DevOps",
   },
   {
     title: "Linkora",
