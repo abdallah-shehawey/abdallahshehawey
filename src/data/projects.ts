@@ -11,6 +11,7 @@ import {
   Code2,
   Container,
   Cpu,
+  FileText,
   Gamepad2,
   Globe,
   GraduationCap,
@@ -357,6 +358,15 @@ export const projects: Project[] = [
     tags: ["DevOps", "Docker", "CI/CD"],
     group: "Notes",
     github: "https://github.com/abdallah-shehawey/DevOps",
+  },
+  {
+    title: "V2X Graduation Project Docs",
+    description:
+      "Research and planning material behind the V2X graduation project — proposal drafts, a Siemens project write-up, lecture notes and early car-detection notebooks with a sample output video",
+    icon: FileText,
+    tags: ["Proposal", "Research", "Jupyter"],
+    group: "Notes",
+    github: "https://github.com/abdallah-shehawey/Graduation_Project_Data",
   },
   {
     title: "shinux — Linux Blog & Q&A Platform",
