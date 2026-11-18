@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Battery,
+  BookOpen,
   BookText,
   Calculator,
   Car,
@@ -8,6 +9,7 @@ import {
   Clock,
   Cloud,
   Code2,
+  Container,
   Cpu,
   FileText,
   Gamepad2,
@@ -34,7 +36,7 @@ import {
 } from "lucide-react";
 
 /** Section a project is listed under on the projects page; also the filter tabs. */
-export type ProjectGroup = "Embedded" | "Linux" | "Web";
+export type ProjectGroup = "Embedded" | "Linux" | "Notes" | "Web";
 
 export interface ProjectVariant {
   label: string;
@@ -331,12 +333,30 @@ export const projects: Project[] = [
     github: "https://github.com/abdallah-shehawey/Linux-Simple-Shell",
   },
   {
+    title: "Embedded Linux Notes",
+    description:
+      "Personal notes and resources from a self-study journey into Embedded Linux — a living document of the learning process",
+    icon: BookOpen,
+    tags: ["Embedded Linux", "Notes", "Self-study"],
+    group: "Notes",
+    github: "https://github.com/abdallah-shehawey/Embedded-Linux-Notes",
+  },
+  {
+    title: "DevOps Track (DEPI)",
+    description:
+      "DevOps training materials and hands-on labs from the Digital Egypt Pioneers Initiative — CI/CD, Linux, Git, Docker and cloud fundamentals",
+    icon: Container,
+    tags: ["DevOps", "Docker", "CI/CD"],
+    group: "Notes",
+    github: "https://github.com/abdallah-shehawey/DevOps",
+  },
+  {
     title: "Linux Utilities Docs",
     description:
       "Documentation of core Linux shell utilities — syntax and examples for pwd and friends",
     icon: FileText,
     tags: ["Linux", "Shell", "Docs"],
-    group: "Linux",
+    group: "Notes",
     github: "https://github.com/abdallah-shehawey/SPL-Udemy",
   },
   {
@@ -380,5 +400,6 @@ export const projects: Project[] = [
 export const projectGroups: { value: ProjectGroup; label: string; short: string }[] = [
   { value: "Embedded", label: "Embedded Systems", short: "Embedded" },
   { value: "Linux", label: "Linux", short: "Linux" },
+  { value: "Notes", label: "Notes & Docs", short: "Notes" },
   { value: "Web", label: "Web & Apps", short: "Web & Apps" },
 ];

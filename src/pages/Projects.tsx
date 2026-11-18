@@ -103,7 +103,7 @@ const Projects = () => {
             </div>
           </motion.div>
 
-          {/* One section per group (Embedded → Linux → Web & Apps), each behind
+          {/* One section per group (Embedded → Linux → Notes → Web & Apps), each behind
               a divider; a filter tab shows just its section. Grids carry no
               layout animation of their own: animating their height scaled
               every card with them. */}
