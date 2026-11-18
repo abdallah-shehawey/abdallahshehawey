@@ -11,7 +11,7 @@ import { projects, projectCategories, type ProjectCategory } from "@/data/projec
 const Projects = () => {
   const [filter, setFilter] = useState<ProjectCategory | "All">("All");
 
-  /* Data is already ordered: strongest repos first, no-repo projects last. */
+  /* Data is already ordered: embedded, Linux, other; no-repo projects last. */
   const filtered =
     filter === "All"
       ? projects
