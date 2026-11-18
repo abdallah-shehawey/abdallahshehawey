@@ -2,6 +2,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { navItems } from "@/data/nav";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
+import Logo from "@/components/Logo";
 import { WHATSAPP_URL } from "@/data/contact";
 
 const Footer = () => {
@@ -13,7 +14,10 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo & Copyright */}
           <div className="text-center md:text-left">
-            <span className="text-2xl font-bold font-mono text-gradient">&lt;AS/&gt;</span>
+            <div className="flex items-center justify-center md:justify-start gap-3">
+              <Logo className="w-11 h-11 ring-1 ring-primary/20 rounded-xl" />
+              <span className="text-xl font-bold font-mono text-gradient">Abdallah Shehawey</span>
+            </div>
             <p className="text-sm text-muted-foreground mt-2">
               © {currentYear} Abdallah Shehawey. All rights reserved.
             </p>

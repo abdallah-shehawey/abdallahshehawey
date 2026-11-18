@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { easeOutExpo } from "@/lib/motion";
 import { navItems } from "@/data/nav";
+import Logo from "@/components/Logo";
 
 /* Tab-style navigation: the active pill slides between tabs via a shared
    framer-motion layoutId, so switching pages feels like moving one element. */
@@ -25,9 +26,12 @@ const Navbar = () => {
             to="/"
             onClick={() => setIsOpen(false)}
             aria-label="Home"
-            className="text-xl font-bold font-mono text-gradient"
+            className="flex items-center gap-2.5 rounded-xl transition-transform duration-200 hover:scale-105"
           >
-            &lt;AS/&gt;
+            <Logo className="w-9 h-9 ring-1 ring-primary/20 rounded-[10px]" title="Home" />
+            <span className="hidden sm:inline text-base font-bold font-mono text-gradient">
+              Abdallah Shehawey
+            </span>
           </Link>
 
           {/* Desktop tabs — internal pages only; external links (blog) live in
