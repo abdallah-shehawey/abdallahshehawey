@@ -31,10 +31,8 @@ import {
   Zap,
 } from "lucide-react";
 
-export type ProjectCategory = "ARM" | "AVR" | "Linux" | "IoT" | "Web" | "Other";
-
-/** Section a project is listed under on the projects page, in display order. */
-export type ProjectGroup = "Embedded" | "Linux" | "Other";
+/** Section a project is listed under on the projects page; also the filter tabs. */
+export type ProjectGroup = "Embedded" | "Linux" | "Web";
 
 export interface ProjectVariant {
   label: string;
@@ -47,7 +45,6 @@ export interface Project {
   icon: LucideIcon;
   tags: string[];
   group: ProjectGroup;
-  categories: ProjectCategory[];
   /** GitHub repo — projects with a link are listed first and open on click. */
   github?: string;
   /** Sibling repos of the same project family, shown as small link chips. */
@@ -98,7 +95,6 @@ export const projects: Project[] = [
     icon: Cpu,
     tags: ["ARM Cortex-M", "STM32", "Bare-metal"],
     group: "Embedded",
-    categories: ["ARM"],
     github: "https://github.com/abdallah-shehawey/COTS-STM32F446xx",
     variants: [
       { label: "F103", url: "https://github.com/abdallah-shehawey/COTS-STM32F103xx" },
@@ -113,7 +109,6 @@ export const projects: Project[] = [
     icon: Music,
     tags: ["ARM Cortex-M4", "Audio", "SD Card"],
     group: "Embedded",
-    categories: ["ARM"],
     github: "https://github.com/abdallah-shehawey/MP3_Player",
   },
   {
@@ -123,7 +118,6 @@ export const projects: Project[] = [
     icon: CircuitBoard,
     tags: ["AVR", "MCAL / HAL", "Embedded C"],
     group: "Embedded",
-    categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/ATMega32-Drivers",
   },
   {
@@ -133,7 +127,6 @@ export const projects: Project[] = [
     icon: Layers,
     tags: ["RTOS", "Scheduler", "AVR"],
     group: "Embedded",
-    categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/RTOS-AVR",
   },
   {
@@ -143,7 +136,6 @@ export const projects: Project[] = [
     icon: Landmark,
     tags: ["AVR", "Embedded C", "EEPROM"],
     group: "Embedded",
-    categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/Bank_DataBase",
   },
   {
@@ -153,7 +145,6 @@ export const projects: Project[] = [
     icon: Shield,
     tags: ["Security", "EEPROM", "Keypad"],
     group: "Embedded",
-    categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/SECURITY-Files",
   },
   {
@@ -163,7 +154,6 @@ export const projects: Project[] = [
     icon: Home,
     tags: ["IoT", "Embedded C", "AVR"],
     group: "Embedded",
-    categories: ["AVR", "IoT"],
     github: "https://github.com/abdallah-shehawey/Smart-Home",
   },
   {
@@ -173,7 +163,6 @@ export const projects: Project[] = [
     icon: Lightbulb,
     tags: ["AVR", "Embedded C", "Automation"],
     group: "Embedded",
-    categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/Smart-Room",
   },
   {
@@ -183,7 +172,6 @@ export const projects: Project[] = [
     icon: Clock,
     tags: ["AVR", "I2C", "LCD"],
     group: "Embedded",
-    categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/Real-Time-Clock",
   },
   {
@@ -193,7 +181,6 @@ export const projects: Project[] = [
     icon: Sprout,
     tags: ["AVR", "Embedded C", "Sensors"],
     group: "Embedded",
-    categories: ["AVR"],
     github: "https://github.com/abdallah-shehawey/Smart-Garden",
   },
   {
@@ -203,7 +190,6 @@ export const projects: Project[] = [
     icon: Calculator,
     tags: ["C", "Assembler", "Parsing"],
     group: "Embedded",
-    categories: ["Other"],
     github: "https://github.com/abdallah-shehawey/Assempler",
   },
   {
@@ -213,7 +199,6 @@ export const projects: Project[] = [
     icon: Code2,
     tags: ["C", "Data Structures", "Console"],
     group: "Embedded",
-    categories: ["Other"],
     github: "https://github.com/abdallah-shehawey/C-Project",
   },
   {
@@ -223,25 +208,7 @@ export const projects: Project[] = [
     icon: Trophy,
     tags: ["C++", "Problem Solving", "ICPC"],
     group: "Embedded",
-    categories: ["Other"],
     github: "https://github.com/abdallah-shehawey/PS_Assuit_Sheet",
-  },
-  {
-    title: "Electronic Voting Machine",
-    description: "Built a secure voting platform with real-time data processing",
-    icon: Vote,
-    tags: ["Security", "UART", "LCD"],
-    group: "Embedded",
-    categories: ["AVR"],
-  },
-  {
-    title: "Traffic Light Controller",
-    description:
-      "Created a real-time traffic management system, reducing delays by 15%",
-    icon: Car,
-    tags: ["RTOS", "Timers", "State Machine"],
-    group: "Embedded",
-    categories: ["AVR"],
   },
   {
     title: "CAN Bus Analyzer",
@@ -250,25 +217,6 @@ export const projects: Project[] = [
     icon: Cpu,
     tags: ["CAN", "Diagnostics", "STM32"],
     group: "Embedded",
-    categories: ["ARM"],
-  },
-  {
-    title: "Firmware Optimization",
-    description:
-      "Reduced memory usage by 25% and improved execution speed by 30%",
-    icon: Zap,
-    tags: ["Optimization", "Memory", "Performance"],
-    group: "Embedded",
-    categories: ["Other"],
-  },
-  {
-    title: "IoT Weather Station",
-    description:
-      "Built an IoT-based weather station using ESP32 and cloud services",
-    icon: Cloud,
-    tags: ["ESP32", "IoT", "Cloud"],
-    group: "Embedded",
-    categories: ["IoT"],
   },
   {
     title: "Battery Management System",
@@ -277,7 +225,37 @@ export const projects: Project[] = [
     icon: Battery,
     tags: ["Power", "ADC", "Monitoring"],
     group: "Embedded",
-    categories: ["Other"],
+  },
+  {
+    title: "Traffic Light Controller",
+    description:
+      "Created a real-time traffic management system, reducing delays by 15%",
+    icon: Car,
+    tags: ["RTOS", "Timers", "State Machine"],
+    group: "Embedded",
+  },
+  {
+    title: "Electronic Voting Machine",
+    description: "Built a secure voting platform with real-time data processing",
+    icon: Vote,
+    tags: ["Security", "UART", "LCD"],
+    group: "Embedded",
+  },
+  {
+    title: "IoT Weather Station",
+    description:
+      "Built an IoT-based weather station using ESP32 and cloud services",
+    icon: Cloud,
+    tags: ["ESP32", "IoT", "Cloud"],
+    group: "Embedded",
+  },
+  {
+    title: "Firmware Optimization",
+    description:
+      "Reduced memory usage by 25% and improved execution speed by 30%",
+    icon: Zap,
+    tags: ["Optimization", "Memory", "Performance"],
+    group: "Embedded",
   },
   {
     title: "Debugging Tool",
@@ -286,7 +264,6 @@ export const projects: Project[] = [
     icon: Wrench,
     tags: ["Debugging", "Testing", "Tools"],
     group: "Embedded",
-    categories: ["Other"],
   },
   {
     title: "WhatsApp Desktop for Linux",
@@ -295,7 +272,6 @@ export const projects: Project[] = [
     icon: MessageCircle,
     tags: ["Electron", "Linux Desktop", "Packaging"],
     group: "Linux",
-    categories: ["Linux"],
     github: "https://github.com/abdallah-shehawey/whatsapp-desktop",
   },
   {
@@ -305,7 +281,6 @@ export const projects: Project[] = [
     icon: MessagesSquare,
     tags: ["C", "GTK4", "WebKitGTK"],
     group: "Linux",
-    categories: ["Linux"],
     github: "https://github.com/abdallah-shehawey/whatsapp",
   },
   {
@@ -315,7 +290,6 @@ export const projects: Project[] = [
     icon: Package,
     tags: ["Linux", "Packaging", "GitHub Pages"],
     group: "Linux",
-    categories: ["Linux"],
     github: "https://github.com/abdallah-shehawey/shinux-repo",
   },
   {
@@ -325,7 +299,6 @@ export const projects: Project[] = [
     icon: Palette,
     tags: ["Rust", "egui", "Open Source"],
     group: "Linux",
-    categories: ["Linux", "Other"],
     github: "https://github.com/abdallah-shehawey/ArtCraft",
   },
   {
@@ -335,7 +308,6 @@ export const projects: Project[] = [
     icon: Gamepad2,
     tags: ["Linux", "Steam / Proton", "Shell"],
     group: "Linux",
-    categories: ["Linux"],
     github: "https://github.com/abdallah-shehawey/Gaming-on-Linux",
   },
   {
@@ -345,7 +317,6 @@ export const projects: Project[] = [
     icon: Terminal,
     tags: ["Linux", "C", "Shell"],
     group: "Linux",
-    categories: ["Linux"],
     github: "https://github.com/abdallah-shehawey/Linux-Simple-Shell",
   },
   {
@@ -354,8 +325,7 @@ export const projects: Project[] = [
       "A Linux technical blog, structured tutorial tracks and a community Q&A engine — Markdown articles, table of contents, RSS feeds; live on Vercel",
     icon: Globe,
     tags: ["Next.js", "Supabase", "Tailwind CSS"],
-    group: "Other",
-    categories: ["Web", "Linux"],
+    group: "Web",
     github: "https://github.com/abdallah-shehawey/shinux-website",
   },
   {
@@ -364,8 +334,7 @@ export const projects: Project[] = [
       "A link-in-bio platform (Linktree alternative) with a marketing landing page and live theme showcase",
     icon: Link,
     tags: ["Next.js", "TypeScript", "Firebase"],
-    group: "Other",
-    categories: ["Web"],
+    group: "Web",
     github: "https://github.com/abdallah-shehawey/linkora",
   },
   {
@@ -374,8 +343,7 @@ export const projects: Project[] = [
       "Interactive graduation website for the Al-Azhar Electronics & Communication class of 2026 — live multi-event countdown, student yearbook grid and project team cards",
     icon: GraduationCap,
     tags: ["JavaScript", "Web", "UI"],
-    group: "Other",
-    categories: ["Web"],
+    group: "Web",
     github: "https://github.com/abdallah-shehawey/EECE-Azhar",
   },
   {
@@ -384,24 +352,13 @@ export const projects: Project[] = [
       "Desktop ledger app for customer accounts with a full Arabic RTL UI — transactions, totals, PDF statements and CSV export",
     icon: BookText,
     tags: ["Python", "PySide6 / Qt", "Desktop"],
-    group: "Other",
-    categories: ["Other"],
+    group: "Web",
     github: "https://github.com/abdallah-shehawey/QT-Application",
   },
 ];
 
-export const projectGroups: { value: ProjectGroup; label: string }[] = [
-  { value: "Embedded", label: "Embedded Systems" },
-  { value: "Linux", label: "Linux" },
-  { value: "Other", label: "Other Projects" },
-];
-
-export const projectCategories: { label: string; value: ProjectCategory | "All" }[] = [
-  { label: "All", value: "All" },
-  { label: "ARM / STM32", value: "ARM" },
-  { label: "AVR", value: "AVR" },
-  { label: "Linux", value: "Linux" },
-  { label: "IoT", value: "IoT" },
-  { label: "Web", value: "Web" },
-  { label: "Other", value: "Other" },
+export const projectGroups: { value: ProjectGroup; label: string; short: string }[] = [
+  { value: "Embedded", label: "Embedded Systems", short: "Embedded" },
+  { value: "Linux", label: "Linux", short: "Linux" },
+  { value: "Web", label: "Web & Apps", short: "Web & Apps" },
 ];

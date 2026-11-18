@@ -6,28 +6,31 @@ import PageHeader from "@/components/PageHeader";
 import FeaturedProject from "@/components/FeaturedProject";
 import ProjectCard from "@/components/ProjectCard";
 import { easeOutExpo, smooth } from "@/lib/motion";
-import {
-  projects,
-  projectCategories,
-  projectGroups,
-  type ProjectCategory,
-} from "@/data/projects";
+import { projects, projectGroups, type ProjectGroup } from "@/data/projects";
+
+type Filter = ProjectGroup | "All";
+
+/* Filter tabs mirror the page sections, each with its project count. */
+const filterTabs: { value: Filter; label: string; count: number }[] = [
+  { value: "All", label: "All", count: projects.length },
+  ...projectGroups.map(({ value, short }) => ({
+    value,
+    label: short,
+    count: projects.filter((project) => project.group === value).length,
+  })),
+];
 
 const Projects = () => {
-  const [filter, setFilter] = useState<ProjectCategory | "All">("All");
+  const [filter, setFilter] = useState<Filter>("All");
 
   /* Data is already ordered inside each group; sections follow projectGroups. */
-  const filtered =
-    filter === "All"
-      ? projects
-      : projects.filter((project) => project.categories.includes(filter));
   const sections = projectGroups
+    .filter(({ value }) => filter === "All" || filter === value)
     .map(({ value, label }) => ({
       group: value,
       label,
-      items: filtered.filter((project) => project.group === value),
-    }))
-    .filter((section) => section.items.length > 0);
+      items: projects.filter((project) => project.group === value),
+    }));
 
   return (
     <PageTransition>
@@ -48,49 +51,68 @@ const Projects = () => {
             <FeaturedProject />
           </div>
 
-          {/* Category filter */}
+          {/* Section filter — a segmented control whose active pill slides
+              between tabs (shared layoutId). */}
           <motion.div
-            className="flex flex-wrap justify-center gap-2 mb-10"
+            className="flex justify-center mb-12"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={smooth(0.1)}
           >
-            {projectCategories.map((category) => {
-              const isActive = filter === category.value;
-              return (
-                <button
-                  key={category.value}
-                  onClick={() => setFilter(category.value)}
-                  className="relative px-4 py-1.5 rounded-full text-sm font-mono transition-colors"
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="project-filter"
-                      className="absolute inset-0 rounded-full bg-primary/10 border border-primary/40"
-                      transition={{ duration: 0.35, ease: easeOutExpo }}
-                    />
-                  )}
-                  <span
-                    className={`relative z-10 ${
-                      isActive ? "text-primary" : "text-muted-foreground hover:text-primary"
-                    }`}
+            <div
+              role="tablist"
+              aria-label="Filter projects"
+              className="inline-flex flex-wrap justify-center gap-1 p-1 rounded-2xl sm:rounded-full border border-border bg-card/60"
+            >
+              {filterTabs.map((tab) => {
+                const isActive = filter === tab.value;
+                return (
+                  <button
+                    key={tab.value}
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setFilter(tab.value)}
+                    className="relative flex items-center gap-2 px-4 py-2 rounded-full text-sm font-mono transition-colors"
                   >
-                    {category.label}
-                  </span>
-                </button>
-              );
-            })}
+                    {isActive && (
+                      <motion.span
+                        layoutId="project-filter"
+                        className="absolute inset-0 rounded-full bg-primary/10 border border-primary/40"
+                        transition={{ duration: 0.35, ease: easeOutExpo }}
+                      />
+                    )}
+                    <span
+                      className={`relative z-10 ${
+                        isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {tab.label}
+                    </span>
+                    <span
+                      className={`relative z-10 min-w-[1.5rem] px-1.5 py-0.5 text-[11px] leading-none rounded-full tabular-nums transition-colors ${
+                        isActive
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-secondary text-muted-foreground"
+                      }`}
+                    >
+                      {tab.count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </motion.div>
 
-          {/* One section per group (Embedded → Linux → Other), each
-              behind a divider. A filter keeps the sections that still have
-              cards. Grids carry no layout animation of their own: animating
-              their height scaled every card with them. */}
+          {/* One section per group (Embedded → Linux → Web & Apps), each behind
+              a divider; a filter tab shows just its section. Grids carry no
+              layout animation of their own: animating their height scaled
+              every card with them. */}
           <div className="space-y-12">
             <AnimatePresence initial={false} mode="popLayout">
               {sections.map(({ group, label, items }) => (
                 <motion.section
                   key={group}
+                  layout="position"
                   aria-label={label}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -109,11 +131,9 @@ const Projects = () => {
                   </div>
 
                   <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                    <AnimatePresence mode="popLayout">
-                      {items.map((project) => (
-                        <ProjectCard key={project.title} project={project} />
-                      ))}
-                    </AnimatePresence>
+                    {items.map((project) => (
+                      <ProjectCard key={project.title} project={project} />
+                    ))}
                   </div>
                 </motion.section>
               ))}
