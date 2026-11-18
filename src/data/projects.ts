@@ -11,7 +11,6 @@ import {
   Code2,
   Container,
   Cpu,
-  FileText,
   Gamepad2,
   Globe,
   GraduationCap,
@@ -297,6 +296,15 @@ export const projects: Project[] = [
     github: "https://github.com/abdallah-shehawey/shinux-repo",
   },
   {
+    title: "Linux Shells & Utilities in C",
+    description:
+      "Linux system programming in C — pwd, echo, cat, cp and mv rebuilt from scratch, a series of shells (femto → pico → nano → micro) and fork/exec process demos",
+    icon: Terminal,
+    tags: ["C", "Syscalls", "Shell"],
+    group: "Linux",
+    github: "https://github.com/abdallah-shehawey/SPL-Udemy",
+  },
+  {
     title: "ArtCraft Open-Source Contributions",
     description:
       "Upstream pull requests to the Craft App Suite of Rust desktop apps — window-size restore on Linux, native Adwaita window buttons on GNOME Wayland and persistent interface scaling, built on a shared egui fork",
@@ -349,15 +357,6 @@ export const projects: Project[] = [
     tags: ["DevOps", "Docker", "CI/CD"],
     group: "Notes",
     github: "https://github.com/abdallah-shehawey/DevOps",
-  },
-  {
-    title: "Linux Utilities Docs",
-    description:
-      "Documentation of core Linux shell utilities — syntax and examples for pwd and friends",
-    icon: FileText,
-    tags: ["Linux", "Shell", "Docs"],
-    group: "Notes",
-    github: "https://github.com/abdallah-shehawey/SPL-Udemy",
   },
   {
     title: "shinux — Linux Blog & Q&A Platform",
