@@ -11,8 +11,13 @@
   </defs>
   <!-- Rounded tile -->
   <rect width="64" height="64" rx="14" fill="url(#bg)"/>
-  <!-- A (accent gradient) -->
-  <path d="M8.5 46 L18.5 18 L28.5 46 M12.6 36 H24.4" fill="none" stroke="url(#accent)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- S (light) -->
-  <path d="M53.2 23.5 C51.5 19.8 48.3 18 44.3 18 C39.6 18 36.3 20.7 36.3 24.8 C36.3 29.2 40.1 30.7 44.6 31.8 C49.3 32.9 53.5 34.4 53.5 39.4 C53.5 43.6 49.9 46 44.7 46 C40.6 46 37.3 44.3 35.3 40.8" fill="none" stroke="#f8fafc" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="none" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- < … /> in the accent gradient, carried over from the old </> mark -->
+    <polyline points="10.7,24 5.7,32 10.7,40" stroke="url(#accent)"/>
+    <line x1="48.5" y1="22" x2="44.5" y2="42" stroke="url(#accent)"/>
+    <polyline points="53.9,24 58.9,32 53.9,40" stroke="url(#accent)"/>
+    <!-- AS initials -->
+    <path d="M16.1 42 L21.1 22 L26.1 42 M18.6 35 H23.6" stroke="#f8fafc"/>
+    <path d="M39 25.8 C38.3 23.4 36.8 22 34.9 22 C32.7 22 31.3 23.6 31.3 25.8 C31.3 28.4 33.3 29.4 35.5 30.3 C37.8 31.2 39.4 32.5 39.4 35.8 C39.4 39.3 37.4 42 34.9 42 C32.8 42 31.3 41 30.7 39" stroke="#f8fafc"/>
+  </g>
 </svg>
