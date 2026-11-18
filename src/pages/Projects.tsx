@@ -70,14 +70,15 @@ const Projects = () => {
             })}
           </motion.div>
 
-          {/* Grid — repos first, then the rest */}
-          <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {/* Grid — repos first, then the rest. No layout animation on the grid
+              itself: animating its height scaled every card with it. */}
+          <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             <AnimatePresence mode="popLayout">
               {filtered.map((project) => (
                 <ProjectCard key={project.title} project={project} />
               ))}
             </AnimatePresence>
-          </motion.div>
+          </div>
 
           <motion.div
             className="text-center mt-14"

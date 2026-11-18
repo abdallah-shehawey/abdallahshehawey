@@ -1,3 +1,4 @@
+import { forwardRef, type Ref } from "react";
 import { motion } from "framer-motion";
 import { Github, ArrowUpRight } from "lucide-react";
 import { easeOutExpo, hoverLift } from "@/lib/motion";
@@ -5,20 +6,26 @@ import type { Project } from "@/data/projects";
 
 /* Cards with a repo are one big link (click anywhere opens GitHub).
    Cards with sibling repos (variants) keep the root as a div so the
-   per-variant links stay valid HTML — no nested anchors. */
+   per-variant links stay valid HTML — no nested anchors.
+
+   Filter animation: layout="position" slides cards to their new slot without
+   scaling them (scale-correcting text on every card is what stuttered), and
+   enter/exit is a short fade. The card forwards its ref because
+   AnimatePresence mode="popLayout" needs it to lift exiting cards out of the
+   grid — without it the remaining cards jumped instead of sliding. */
 const cardMotion = {
-  layout: true,
-  initial: { opacity: 0, scale: 0.96 },
+  layout: "position",
+  initial: { opacity: 0, scale: 0.97 },
   animate: { opacity: 1, scale: 1 },
-  exit: { opacity: 0, scale: 0.96 },
-  transition: { duration: 0.35, ease: easeOutExpo },
+  exit: { opacity: 0, scale: 0.97, transition: { duration: 0.15 } },
+  transition: { duration: 0.3, ease: easeOutExpo },
   whileHover: hoverLift,
 } as const;
 
 const cardClass =
-  "group relative flex flex-col p-5 rounded-xl border-glow bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-colors duration-300";
+  "group relative flex flex-col p-5 rounded-xl border-glow bg-card/60 hover:bg-card/80 transition-colors duration-300";
 
-const ProjectCard = ({ project }: { project: Project }) => {
+const ProjectCard = forwardRef<HTMLElement, { project: Project }>(({ project }, ref) => {
   const Icon = project.icon;
 
   const body = (
@@ -75,6 +82,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
   if (project.github && !project.variants) {
     return (
       <motion.a
+        ref={ref as Ref<HTMLAnchorElement>}
         href={project.github}
         target="_blank"
         rel="noopener noreferrer"
@@ -88,10 +96,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
   }
 
   return (
-    <motion.div className={cardClass} {...cardMotion}>
+    <motion.div ref={ref as Ref<HTMLDivElement>} className={cardClass} {...cardMotion}>
       {body}
     </motion.div>
   );
-};
+});
+
+ProjectCard.displayName = "ProjectCard";
 
 export default ProjectCard;
