@@ -323,6 +323,15 @@ export const projects: Project[] = [
     github: "https://github.com/abdallah-shehawey/Gaming-on-Linux",
   },
   {
+    title: "dotfiles-linux",
+    description:
+      "Personal Ubuntu and Fedora dotfiles, apps and system customization — Zsh, Neovim, GNOME and themes for a consistent dev environment on a new machine",
+    icon: Settings,
+    tags: ["Linux", "Zsh", "Neovim"],
+    group: "Linux",
+    github: "https://github.com/abdallah-shehawey/dotfiles-linux",
+  },
+  {
     title: "Linux Simple Shell",
     description:
       "A simple command shell for Linux written in C",
@@ -357,15 +366,6 @@ export const projects: Project[] = [
     tags: ["DevOps", "Docker", "CI/CD"],
     group: "Notes",
     github: "https://github.com/abdallah-shehawey/DevOps",
-  },
-  {
-    title: "dotfiles-linux",
-    description:
-      "Personal Ubuntu and Fedora dotfiles, apps and system customization — Zsh, Neovim, GNOME and themes for a consistent dev environment on a new machine",
-    icon: Settings,
-    tags: ["Linux", "Zsh", "Neovim"],
-    group: "Notes",
-    github: "https://github.com/abdallah-shehawey/dotfiles-linux",
   },
   {
     title: "shinux — Linux Blog & Q&A Platform",
