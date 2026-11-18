@@ -322,7 +322,7 @@ const handler = async (req: Request): Promise<Response> => {
     const content: EmailContent = { name, email, subject, message, sentAt: new Date() };
 
     // Send notification email to site owner
-    const emailResponse = await resend.emails.send({
+    const { data: emailData, error: emailError } = await resend.emails.send({
       // Fixed sender name: keeps the mail filterable and avoids letting a
       // submitter spoof a display name in the inbox list
       from: "Portfolio Contact <onboarding@resend.dev>",
@@ -333,7 +333,14 @@ const handler = async (req: Request): Promise<Response> => {
       reply_to: email,
     });
 
-    console.log("Email sent successfully:", emailResponse);
+    // The Resend SDK reports API failures (bad key, unverified recipient,
+    // quota) in `error` rather than throwing, so check it explicitly —
+    // otherwise the visitor is told the message was sent when it was dropped.
+    if (emailError) {
+      throw new Error(`Resend rejected the email: ${emailError.message}`);
+    }
+
+    console.log("Email sent successfully:", emailData);
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,

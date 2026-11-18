@@ -29,7 +29,7 @@ const HeroSection = () => {
           <div className="flex-1 text-center lg:text-left max-w-3xl lg:max-w-none">
             <div className="animate-fade-up inline-block mb-4" style={{ animationDelay: "0.05s" }}>
               <span className="px-4 py-2 rounded-full border border-primary/30 text-primary text-sm font-mono bg-primary/5">
-                &lt;Embedded Software Engineer /&gt;
+                &lt;Embedded Software Engineer &amp; PCB Designer /&gt;
               </span>
             </div>
 
@@ -45,9 +45,10 @@ const HeroSection = () => {
               className="animate-fade-up text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl"
               style={{ animationDelay: "0.25s" }}
             >
-              Embedded Software Engineer specializing in C/C++, RTOS, and hardware-software
-              integration — from bare-metal drivers written from scratch to AUTOSAR and
-              Embedded Linux, with a focus on the automotive field.
+              Embedded Software Engineer &amp; PCB Designer at NiroTronix — writing C firmware
+              for STM32, AVR and PIC and designing the boards it runs on in KiCad. From
+              bare-metal drivers and RTOS to AUTOSAR and Embedded Linux, with a focus on the
+              automotive field.
             </p>
 
             {/* Contact Info */}
@@ -80,7 +81,7 @@ const HeroSection = () => {
               </a>
               <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-sm">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span>El Mahalla, Egypt</span>
+                <span>El Obour, Egypt</span>
               </div>
             </div>
 

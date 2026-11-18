@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Award, BookOpen, Users } from "lucide-react";
+import { Award, BookOpen, CircuitBoard, Users } from "lucide-react";
 
 export const education = {
   degree: "Electronics and Communication Engineering",
@@ -37,7 +37,7 @@ export const certifications: Certification[] = [
     title: "System Programming under Linux",
     period: "Jul 2025 – Feb 2026",
     instructors: "STMicroelectronics",
-    hours: "6 Months",
+    hours: "8 Months",
     topics: [
       "Building Linux utilities from scratch (cp, mv, pwd, ls, echo, custom CLI tools)",
       "Implementing multiple custom shells (femto, pico, nano, micro shells)",
@@ -45,7 +45,8 @@ export const certifications: Certification[] = [
       "Memory and User Management",
       "Process management and building a minimal Linux distribution tested on QEMU",
       "Introduction to Yocto build system and embedded Linux routing",
-      "C / C++ OOP, RTOS / FreeRTOS concepts, testing concepts",
+      "Object-oriented programming in C++",
+      "RTOS and FreeRTOS fundamentals, testing concepts",
     ],
   },
   {
@@ -64,6 +65,7 @@ export const certifications: Certification[] = [
     title: "Embedded Linux",
     period: "Jul 2025 – Present",
     topics: [
+      "System architecture, build systems, toolchains and kernel fundamentals",
       "Linux boot process, system services management (systemd), and user/group administration",
       "File permissions, access control, and filesystem hierarchy",
       "Package management, shell scripting, disks & partitions, and system monitoring tools",
@@ -107,6 +109,19 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
+    title: "Embedded Software Engineer & PCB Designer",
+    organization: "NiroTronix",
+    location: "Egypt · Full-time",
+    period: "Jun 2026 – Present",
+    icon: CircuitBoard,
+    highlights: [
+      "Develop C firmware for PIC, AVR and STM32, including peripheral drivers, communication and control",
+      "Design and revise electronic schematics and PCB layouts in KiCad, including component selection, routing and DRC",
+      "Develop automated board tests, debug hardware/firmware integration, and prepare Gerber, drill and BOM files",
+      "Prepare technical documentation to support product development and troubleshooting",
+    ],
+  },
+  {
     title: "Vice Head of Embedded System",
     organization: "AZhar EXHIBITION (AZEX)",
     location: "Al-Azhar University, Cairo",
@@ -120,7 +135,7 @@ export const experiences: Experience[] = [
   },
   {
     title: "Core Team of Embedded System",
-    organization: "Google Developer Student Club (GDSC)",
+    organization: "Google Developer Groups (GDG)",
     location: "Al-Azhar University, Cairo",
     period: "Apr 2024 – Sep 2024",
     icon: Award,

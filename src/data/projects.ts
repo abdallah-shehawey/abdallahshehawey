@@ -73,6 +73,15 @@ export const featuredProject = {
    the ones without a public repo close the list. */
 export const projects: Project[] = [
   {
+    title: "NiroTronix Motor Driver Library",
+    description:
+      "Arduino library for the NiroTronix MD series brushed DC motor drivers — PWM/DIR speed control, smooth ramps and 25 kHz PWM, published to the Arduino Library Registry",
+    icon: Zap,
+    tags: ["Arduino", "PWM", "Motor Control"],
+    categories: ["AVR"],
+    github: "https://github.com/abdallah-shehawey/NiroTronixMotorDriver",
+  },
+  {
     title: "ATmega32 Driver Suite",
     description:
       "Complete MCAL/HAL driver library for the ATmega32 family — DIO, ADC, UART, I2C, SPI, PWM, EEPROM and more, written from scratch",

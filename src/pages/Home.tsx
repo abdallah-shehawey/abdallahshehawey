@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Terminal, Cpu, Wrench } from "lucide-react";
+import { ArrowRight, Cpu, Wrench, CircuitBoard } from "lucide-react";
 import PageTransition from "@/components/PageTransition";
 import HeroSection from "@/components/HeroSection";
 import FeaturedProject from "@/components/FeaturedProject";
@@ -16,9 +16,9 @@ const stats = [
 
 const currently = [
   {
-    icon: Terminal,
-    title: "System Programming under Linux",
-    detail: "6-month track at STMicroelectronics — syscalls, custom shells, minimal distro on QEMU",
+    icon: CircuitBoard,
+    title: "Embedded Software Engineer & PCB Designer @ NiroTronix",
+    detail: "C firmware for PIC, AVR & STM32, KiCad schematics and PCB layouts, automated board tests",
   },
   {
     icon: Cpu,
@@ -28,7 +28,7 @@ const currently = [
   {
     icon: Wrench,
     title: "Embedded Linux",
-    detail: "Build systems, toolchains, Yocto, and kernel fundamentals",
+    detail: "Build systems, toolchains, Yocto, Buildroot, and kernel fundamentals",
   },
 ];
 
@@ -84,6 +84,13 @@ const Home = () => {
                   from the datasheet up, and care about deterministic, real-time code.
                 </p>
                 <p>
+                  Since June 2026 I've been working full-time as an Embedded Software
+                  Engineer &amp; PCB Designer at NiroTronix, covering the whole product
+                  path — schematic capture and KiCad board layout, C firmware for PIC,
+                  AVR and STM32, hardware/firmware bring-up, automated board tests, and
+                  the Gerber, drill and BOM files that go to the fab.
+                </p>
+                <p>
                   My focus is automotive-grade embedded software: RTOS-based
                   architectures, communication protocols (CAN, LIN, UART, SPI, I2C),
                   and the AUTOSAR layered architecture. My graduation project was a V2X
@@ -92,8 +99,8 @@ const Home = () => {
                 </p>
                 <p>
                   When I'm not shipping firmware, I teach — I've trained 200+ students
-                  in C and embedded systems through AZEX and Google Developer Student
-                  Club at my university — and I sharpen my skills in coding
+                  in C and embedded systems through AZEX and Google Developer Groups
+                  (GDG) at my university — and I sharpen my skills in coding
                   competitions and hackathons.
                 </p>
               </div>
@@ -191,8 +198,8 @@ const Home = () => {
               Let's Build Something <span className="text-gradient">Together</span>
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-              Open to embedded software opportunities, collaborations, and interesting
-              conversations about firmware, RTOS, and automotive systems.
+              Open to collaborations and interesting conversations about firmware,
+              PCB design, RTOS, and automotive systems.
             </p>
             <Link
               to="/contact"

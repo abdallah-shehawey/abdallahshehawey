@@ -1,31 +1,39 @@
 import { motion } from "framer-motion";
-import { Code, Cpu, Terminal, Wifi, Settings, Layers } from "lucide-react";
+import { Code, Cpu, Terminal, Wifi, Layers, CircuitBoard, Microchip, Bug } from "lucide-react";
 import { smooth, hoverLift } from "@/lib/motion";
 
 const skills = {
   "Programming Languages": {
     icon: Code,
-    items: ["C", "C++", "Embedded C", "Python", "Assembly", "Verilog"]
+    items: ["C", "Embedded C", "C++", "Python", "Assembly", "Verilog"]
   },
-  "Embedded Systems": {
+  "Microcontrollers & Platforms": {
+    icon: Microchip,
+    items: ["STM32 (ARM Cortex-M)", "AVR", "PIC", "ESP32", "Raspberry Pi"]
+  },
+  "Embedded Development": {
     icon: Cpu,
-    items: ["RTOS", "Microcontroller Interfacing", "Device Drivers", "ARM Cortex-M", "AVR", "PIC", "ESP32", "Raspberry Pi"]
+    items: ["Peripheral Drivers", "Interrupts", "Timers", "PWM", "ADC", "DMA", "RTOS / FreeRTOS", "AUTOSAR Fundamentals"]
   },
-  "Communication Protocols": {
+  "Communication Interfaces": {
     icon: Wifi,
-    items: ["UART", "SPI", "I2C", "CAN Protocol", "LIN Protocol", "Ethernet"]
+    items: ["UART", "SPI", "I2C", "CAN", "LIN", "Ethernet"]
+  },
+  "PCB Design": {
+    icon: CircuitBoard,
+    items: ["KiCad Schematics", "PCB Layout", "Component Selection", "Routing", "ERC / DRC", "Gerber, Drill & BOM"]
   },
   "Development Tools": {
     icon: Terminal,
-    items: ["STM32 CubeIDE", "VS Code", "Eclipse", "Keil µVision", "Proteus", "Git & GitHub"]
+    items: ["STM32CubeIDE", "MPLAB X / XC8", "Atmel Studio", "Keil µVision", "Proteus", "VS Code", "MATLAB", "Git & GitHub"]
   },
-  "Embedded Linux": {
+  "Debugging & Testing": {
+    icon: Bug,
+    items: ["HW / FW Integration", "JTAG", "Logic Analyzers", "Oscilloscopes", "Unit Testing"]
+  },
+  "Linux & Software": {
     icon: Layers,
-    items: ["Linux Administration", "SPL", "System Programming", "Shell Scripting", "Yocto"]
-  },
-  "Additional": {
-    icon: Settings,
-    items: ["MATLAB", "JTAG Debugging", "Logic Analyzers", "Oscilloscopes", "AUTOSAR"]
+    items: ["Linux Administration", "Shell Scripting", "System Programming", "QEMU", "Yocto", "Buildroot", "Data Structures & Algorithms"]
   }
 };
 
@@ -47,11 +55,11 @@ const SkillsSection = () => {
             <span className="whitespace-nowrap">Technical <span className="text-gradient">Expertise</span></span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive knowledge in embedded systems development, from low-level programming to system architecture
+            From schematic capture and board layout to firmware, hardware integration, debugging and testing
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
           {Object.entries(skills).map(([category, { icon: Icon, items }], index) => (
             <motion.div
               key={category}

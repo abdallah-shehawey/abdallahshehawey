@@ -21,7 +21,12 @@ const Navbar = () => {
       <div className="w-full max-w-[1700px] mx-auto px-6 md:px-12">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="text-xl font-bold font-mono text-gradient">
+          <Link
+            to="/"
+            onClick={() => setIsOpen(false)}
+            aria-label="Home"
+            className="text-xl font-bold font-mono text-gradient"
+          >
             &lt;AS/&gt;
           </Link>
 

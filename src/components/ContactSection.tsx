@@ -167,7 +167,7 @@ const ContactSection = () => {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Location</p>
-                      <p className="text-foreground">El Mahalla El Kubra, El Gharbia, Egypt</p>
+                      <p className="text-foreground">El Obour, Qalyubia, Egypt</p>
                     </div>
                   </div>
                 </div>
@@ -244,10 +244,13 @@ const ContactSection = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm text-muted-foreground mb-2">Name</label>
+                    <label htmlFor="contact-name" className="block text-sm text-muted-foreground mb-2">Name</label>
                     <input
+                      id="contact-name"
                       type="text"
                       name="name"
+                      autoComplete="name"
+                      aria-invalid={errors.name ? true : undefined}
                       value={formData.name}
                       onChange={handleChange}
                       className={`w-full px-4 py-3 rounded-lg bg-secondary border ${
@@ -260,10 +263,13 @@ const ContactSection = () => {
                     )}
                   </div>
                   <div>
-                    <label className="block text-sm text-muted-foreground mb-2">Email</label>
+                    <label htmlFor="contact-email" className="block text-sm text-muted-foreground mb-2">Email</label>
                     <input
+                      id="contact-email"
                       type="email"
                       name="email"
+                      autoComplete="email"
+                      aria-invalid={errors.email ? true : undefined}
                       value={formData.email}
                       onChange={handleChange}
                       className={`w-full px-4 py-3 rounded-lg bg-secondary border ${
@@ -276,10 +282,13 @@ const ContactSection = () => {
                     )}
                   </div>
                   <div>
-                    <label className="block text-sm text-muted-foreground mb-2">Subject</label>
+                    <label htmlFor="contact-subject" className="block text-sm text-muted-foreground mb-2">Subject</label>
                     <input
+                      id="contact-subject"
                       type="text"
                       name="subject"
+                      autoComplete="off"
+                      aria-invalid={errors.subject ? true : undefined}
                       value={formData.subject}
                       onChange={handleChange}
                       className={`w-full px-4 py-3 rounded-lg bg-secondary border ${
@@ -292,9 +301,11 @@ const ContactSection = () => {
                     )}
                   </div>
                   <div>
-                    <label className="block text-sm text-muted-foreground mb-2">Message</label>
+                    <label htmlFor="contact-message" className="block text-sm text-muted-foreground mb-2">Message</label>
                     <textarea
+                      id="contact-message"
                       name="message"
+                      aria-invalid={errors.message ? true : undefined}
                       rows={4}
                       value={formData.message}
                       onChange={handleChange}

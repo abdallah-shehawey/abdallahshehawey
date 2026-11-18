@@ -6,8 +6,8 @@ export type NavItem = {
   external?: boolean;
 };
 
-/** My Linux blog — cross-linked from the navbar, footer and home page. */
-export const BLOG_URL = "https://shehaweyblog.vercel.app/";
+/** My Linux blog (shinux) — cross-linked from the navbar, footer and home page. */
+export const BLOG_URL = "https://shinux.vercel.app/";
 
 export const navItems: NavItem[] = [
   { label: "Home", to: "/" },

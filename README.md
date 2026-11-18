@@ -1,6 +1,6 @@
 # Abdallah Shehawey — Portfolio
 
-Personal portfolio of an Embedded Software Engineer: projects, resume, and skills across bare-metal drivers, RTOS, and V2X systems.
+Personal portfolio of an Embedded Software Engineer & PCB Designer: projects, resume, and skills across firmware, KiCad PCB design, RTOS, and V2X systems.
 
 **Live**: [abdallahshehawey.vercel.app](https://abdallahshehawey.vercel.app)
 
