@@ -5,7 +5,7 @@
       <stop offset="1" stop-color="#0a0d11"/>
     </linearGradient>
     <!-- One sweep across the whole tile: green bottom-left to teal top-right
-         (the site's --accent and --primary). -->
+         (the site's accent and primary colours). -->
     <linearGradient id="trace" gradientUnits="userSpaceOnUse" x1="8" y1="56" x2="56" y2="8">
       <stop offset="0" stop-color="#2eb873"/>
       <stop offset="1" stop-color="#26d9d9"/>
