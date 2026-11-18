@@ -68,7 +68,10 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: "Inter", sans-serif;
+    font-family: "Poetsen One", system-ui, sans-serif;
+    /* Poetsen One ships a single weight; don't let font-bold/semibold smear a
+       faux-bold over an already heavy display face. */
+    font-synthesis-weight: none;
   }
 
   h1,
@@ -77,7 +80,7 @@
   h4,
   h5,
   h6 {
-    font-family: "JetBrains Mono", monospace;
+    font-family: "Poetsen One", system-ui, sans-serif;
   }
 
   code,

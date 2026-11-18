@@ -22,8 +22,12 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        // Poetsen One is the site's typeface everywhere — body text and the
+        // `font-mono` headings, nav and tags alike. JetBrains Mono is kept only
+        // for real code (`code`, `pre`), see src/index.css.
+        sans: ['"Poetsen One"', 'system-ui', 'sans-serif'],
+        mono: ['"Poetsen One"', 'system-ui', 'sans-serif'],
+        code: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
