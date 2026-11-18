@@ -1,7 +1,10 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
 
-const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+// Read once, but build the client lazily: `new Resend(undefined)` throws at
+// module load, which took the whole worker down — CORS preflights included —
+// whenever the secret was missing, instead of returning a clean error.
+const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -320,6 +323,11 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Escaping happens inside the template renderer
     const content: EmailContent = { name, email, subject, message, sentAt: new Date() };
+
+    if (!RESEND_API_KEY) {
+      throw new Error("RESEND_API_KEY secret is not set on this project");
+    }
+    const resend = new Resend(RESEND_API_KEY);
 
     // Send notification email to site owner
     const { data: emailData, error: emailError } = await resend.emails.send({

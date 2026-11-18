@@ -29,3 +29,6 @@ dist-ssr
 .env
 .env.local
 .env*.local
+
+# Supabase CLI state (linked project, CLI version cache)
+supabase/.temp/
